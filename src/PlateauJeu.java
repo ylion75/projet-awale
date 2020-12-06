@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.io.*;
 
 public class PlateauJeu {
     private int rangee;
@@ -6,15 +7,12 @@ public class PlateauJeu {
     private int graine;
     private int[][] plateau;
 
-    public PlateauJeu(){
+    public PlateauJeu(int rangee, int trou){
         //les données sont mises en dur pour l'instant
-        this.rangee = 2;
-        this.trou = 6;
-        this.graine = 24;
-    }
+        this.rangee = rangee;
+        this.trou = trou;
 
-    public void init(){
-        plateau p  = new PlateauJeu[2][6];
+        plateau  = new int[rangee][trou];
         for (int i = 0;i < plateau.length; i++) {
             for (int j = 0;j < plateau[i].length;j++) {
                 plateau[i][j] = 4;
@@ -23,7 +21,24 @@ public class PlateauJeu {
             System.out.println();
         }
         System.out.println();
+
     }
+
+
+    /*
+    public void init(){
+        plateau  = new int[2][6];
+        for (int i = 0;i < plateau.length; i++) {
+            for (int j = 0;j < plateau[i].length;j++) {
+                plateau[i][j] = 4;
+                System.out.print(plateau[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+     */
+}
 
 
 
@@ -31,4 +46,4 @@ public class PlateauJeu {
 
     //a faire:
     //afficher grille
-}
+
