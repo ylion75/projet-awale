@@ -10,7 +10,7 @@ public class PlateauJeu {
         this.graine = 24;
     }
 
-    public static int
+    //public static int
 
     //a faire:
     //afficher grille
