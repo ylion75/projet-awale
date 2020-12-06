@@ -14,7 +14,7 @@ public class PlateauJeu {
     }
 
     public void init(){
-        plateau = new int[2][6];
+        plateau p  = new PlateauJeu[2][6];
         for (int i = 0;i < plateau.length; i++) {
             for (int j = 0;j < plateau[i].length;j++) {
                 plateau[i][j] = 4;
@@ -25,12 +25,7 @@ public class PlateauJeu {
         System.out.println();
     }
 
-    @Override
-    public String toString() {
-        return "PlateauJeu{" +
-                "plateau=" + Arrays.toString(plateau) +
-                '}';
-    }
+
 
     //public static int
 
