@@ -8,6 +8,7 @@ public class PlateauJeu {
         this.rangee = 2;
         this.trou = 6;
         this.graine = 24;
+        //test
     }
 
     //public static int
