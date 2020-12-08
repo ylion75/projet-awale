@@ -65,7 +65,15 @@ public class PlateauJeu {
             }
         System.out.println(); //saut de ligne
         }
+
+    public int getRangee() {
+        return rangee;
     }
+
+    public int getTrou() {
+        return trou;
+    }
+}
 
 
 
