@@ -8,4 +8,8 @@ public class Joueur {
         this.nom = nom;
         this.numero = ++cpt;
     }
+
+    public String getNom() {
+        return nom;
+    }
 }

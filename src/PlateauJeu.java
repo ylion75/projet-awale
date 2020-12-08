@@ -64,7 +64,11 @@ public class PlateauJeu {
                 System.out.print("  " + j + "   ");
             }
         System.out.println(); //saut de ligne
-        }
+        System.out.println("Nord a " ); //reflechir à une var graineLigne
+        System.out.println("Sud a " );
+
+        System.out.println("Au joueur " );//+ getNom())
+    }
 
     public int getRangee() {
         return rangee;
