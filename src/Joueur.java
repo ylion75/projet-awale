@@ -12,4 +12,8 @@ public class Joueur {
     public String getNom() {
         return nom;
     }
+
+    public int getNumero() {
+        return numero;
+    }
 }

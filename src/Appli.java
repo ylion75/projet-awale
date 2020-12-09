@@ -10,10 +10,5 @@ public class Appli {
         PlateauJeu awale = new PlateauJeu(2, 6);
         awale.afficherPlateau();
 
-        //methodes à créer
-        //choisir case
-        //déplacer graines
-        //ramasser
-
     }
 }

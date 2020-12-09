@@ -23,17 +23,14 @@ public class PlateauJeu {
         }
     }
 
+    //constructeur vide : sans paramètres, il lance l'awalé classique
     public PlateauJeu() {
         this.rangee = 2;
         this.trou = 6;
         this.graineParTrou = 4;
     }
 
-    //pb avec toString parce qu'il faut convertir le tableau en String
-
-
     //pour l'affichage
-
     public void afficherPlateau() {
         int cpt = 0;
         System.out.print("NORD");
