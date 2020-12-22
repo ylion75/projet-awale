@@ -32,7 +32,7 @@ public class Jeu {
     //ramasser
 
     public static void main(String[] args) {
-        
+
     }
 
 }
