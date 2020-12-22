@@ -10,9 +10,4 @@ public class PlateauJeuTest {
         assertEquals(p.getTrou(),6);
     }
 
-    @Test
-    public void getGraineDansTrouTest(){
-        PlateauJeu p = new PlateauJeu(2,2);
-        assertEquals(p.getGraineDansTrou(2,2), 4);
-    }
 }

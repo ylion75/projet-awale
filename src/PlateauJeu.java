@@ -1,5 +1,4 @@
 import java.lang.reflect.Array;
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Arrays.*;
 import java.io.*;
@@ -15,7 +14,7 @@ public class PlateauJeu {
         //les données sont mises en dur pour l'instant
         this.rangee = rangee;
         this.trou = trou;
-        //this.graineParTrou = 4;
+        this.graineParTrou = 4;
 
         this.plateau = new int[rangee][trou];
         for (int i = 0; i < this.plateau.length; i++) {
@@ -26,13 +25,15 @@ public class PlateauJeu {
 
 
     }
-
+    /*
     //constructeur vide : sans paramètres, il lance l'awalé classique
     public PlateauJeu() {
         this.rangee = 2;
         this.trou = 6;
         this.graineParTrou = 4;
     }
+
+     */
 
     //pour l'affichage
     public void afficherPlateau() {
