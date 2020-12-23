@@ -27,9 +27,10 @@ public class Jeu implements Regles {
 
     }
 
+
     public static void main(String[] args) {
         Jeu awale = new Jeu();
-        System.out.println(awale.plateau.toString());
+        awale.plateau.afficherPlateau();
     }
 
 }
