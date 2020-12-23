@@ -10,36 +10,60 @@ public class PlateauJeu {
     private int[][] plateau;
 
 
-    public PlateauJeu(int rangee, int trou) {
-        //les données sont mises en dur pour l'instant
+    public PlateauJeu(int rangee, int trou, int graineParTrou) {
         this.rangee = rangee;
         this.trou = trou;
-        //this.graineParTrou = 4;
+        this.graineParTrou = graineParTrou;
 
         this.plateau = new int[rangee][trou];
-        for (int i = 0; i < this.plateau.length; i++) {
-            for (int j = 0; j < this.plateau[i].length; j++) {  //Intellij sugere Arrays.fill(this.plateau[i], this.graineParTrou);
-                this.plateau[i][j] = this.graineParTrou;
+        for (int row = 0; row < this.plateau.length; row++) {
+            for (int col = 0; col < this.plateau[row].length; col++) {  //Intellij sugere Arrays.fill(this.plateau[i], this.graineParTrou);
+                this.plateau[row][col] = this.graineParTrou;
             }
         }
-
-
     }
-    /*
-    //constructeur vide : sans paramètres, il lance l'awalé classique
+
+    //version avec constructeur vide charge l'Awale de base.
+    //le code est dupliqué y'a peut être moyen de faire qqchose pour enlever un des deux
     public PlateauJeu() {
         this.rangee = 2;
         this.trou = 6;
         this.graineParTrou = 4;
-    }
 
-     */
+        this.plateau = new int[rangee][trou];
+        for (int row = 0; row < this.plateau.length; row++) {
+            for (int col = 0; col < this.plateau[row].length; col++) {  //Intellij sugere Arrays.fill(this.plateau[i], this.graineParTrou);
+                this.plateau[row][col] = this.graineParTrou;
+            }
+        }
+    }
 
     public void setGraineParTrou(int graineParTrou) {
         this.graineParTrou = graineParTrou;
     }
 
-    //pour l'affichage
+    @Override
+    public String toString() {
+        String s ="";
+        for (int row = 0; row < this.plateau.length; row++){
+            for (int col = 0; col < this.plateau[row].length; col++){
+                //s += plateau[i][j];
+                s += plateau[row][col];
+
+            }
+            System.out.println();
+        }
+        return s;
+        /*
+                "PlateauJeu{" +
+                "plateau=" + Arrays.toString(plateau) +
+                '}';
+
+         */
+    }
+
+    //probleme renvoie un void
+    /*
     public void afficherPlateau() {
         int cpt = 0;
         System.out.print("NORD");
@@ -76,6 +100,14 @@ public class PlateauJeu {
         System.out.println("Au joueur " );//+ getNom())
     }
 
+     */
+
+
+    public int getGraineDansTrou(int x, int y){
+        return plateau[x][y];
+    }
+
+    //getter pour les tests
     public int getRangee() {
         return rangee;
     }
@@ -83,16 +115,6 @@ public class PlateauJeu {
     public int getTrou() {
         return trou;
     }
-
-    //public int Array.get()
-
-    public int getGraineDansTrou(int x, int y){
-        return plateau[x][y];
-    }
-
-
-
-
 
 }
 
