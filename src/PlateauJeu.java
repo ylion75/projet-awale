@@ -14,7 +14,7 @@ public class PlateauJeu {
         //les données sont mises en dur pour l'instant
         this.rangee = rangee;
         this.trou = trou;
-        this.graineParTrou = 4;
+        //this.graineParTrou = 4;
 
         this.plateau = new int[rangee][trou];
         for (int i = 0; i < this.plateau.length; i++) {
@@ -34,6 +34,10 @@ public class PlateauJeu {
     }
 
      */
+
+    public void setGraineParTrou(int graineParTrou) {
+        this.graineParTrou = graineParTrou;
+    }
 
     //pour l'affichage
     public void afficherPlateau() {

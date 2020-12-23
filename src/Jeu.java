@@ -4,14 +4,14 @@ public class Jeu {
     private boolean coupPossible;
 
 
-    /*
+
     //je sais pas si nécessaire
     private Jeu(){
         this.J1 = new Joueur("SUD");
         this.J2 = new Joueur("NORD");
     }
 
-     */
+
 
 
     public static void main(String[] args) {
