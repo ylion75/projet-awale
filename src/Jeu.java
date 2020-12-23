@@ -13,19 +13,31 @@ public class Jeu implements Regles {
     }
 
     @Override
-    public void choixPremierJoueur(){
-
+    public int premierJoueur(){
+        //de base c'est J1 qui commence, on pourra mettre un rand sur d'autres versions du jeu
+        //0 correspond au joueur 1
+        return 0;
     }
 
     @Override
-    public void joueurSuivant(){
-
+    public int joueurSuivant(int joueurActuel) {
+        if(joueurActuel == 0){
+            return 1;
+        }
+        else return 0;
     }
 
     @Override
     public void joueurUnCoup() {
+        /*
+        if(plateau.getGraineDansTrou(x,y) != 0){
+            plateau[x][y]
+        }
 
+         */
     }
+
+
 
 
     public static void main(String[] args) {
