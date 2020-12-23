@@ -3,8 +3,8 @@ public interface Regles {
     //Les méthodes sont publiques et non définies
 
     //int ou void ?
-    public void choixPremierJoueur();
-    public void joueurSuivant();
+    public int premierJoueur();
+    public int joueurSuivant(int joueurActuel);
     public void joueurUnCoup();
 
 }

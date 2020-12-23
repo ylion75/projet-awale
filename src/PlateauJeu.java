@@ -42,30 +42,6 @@ public class PlateauJeu {
         this.graineParTrou = graineParTrou;
     }
 
-    /*
-    @Override
-    public String toString() {
-        String s ="";
-        for (int row = 0; row < this.plateau.length; row++){
-            for (int col = 0; col < this.plateau[row].length; col++){
-                //s += plateau[i][j];
-                s += plateau[row][col];
-
-            }
-            System.out.println();
-        }
-        return s;
-        /*
-                "PlateauJeu{" +
-                "plateau=" + Arrays.toString(plateau) +
-                '}';
-
-
-    }
-     */
-
-    //probleme renvoie un void
-
     public void afficherPlateau() {
         int cpt = 0;
         System.out.print("NORD");
@@ -101,10 +77,7 @@ public class PlateauJeu {
 
         System.out.println("Au joueur " );//+ getNom())
     }
-
-
-
-
+    
     public int getGraineDansTrou(int x, int y){
         return plateau[x][y];
     }
@@ -121,7 +94,6 @@ public class PlateauJeu {
     public int getTrou() {
         return trou;
     }
-
 }
 
 
