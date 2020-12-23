@@ -16,5 +16,12 @@ public class PlateauJeuTest {
         assertEquals(p2.getGraineDansTrou(1,1),4);
     }
 
+    @Test
+    public void setGraineDansTrouTest(){
+        PlateauJeu p = new PlateauJeu();
+        p.ajouteUneGraine(1,1);
+        assertEquals(p.getGraineDansTrou(1,1),5);
+    }
+
 
 }

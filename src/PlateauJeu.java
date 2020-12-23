@@ -42,6 +42,7 @@ public class PlateauJeu {
         this.graineParTrou = graineParTrou;
     }
 
+    /*
     @Override
     public String toString() {
         String s ="";
@@ -59,11 +60,12 @@ public class PlateauJeu {
                 "plateau=" + Arrays.toString(plateau) +
                 '}';
 
-         */
+
     }
+     */
 
     //probleme renvoie un void
-    /*
+
     public void afficherPlateau() {
         int cpt = 0;
         System.out.print("NORD");
@@ -100,11 +102,15 @@ public class PlateauJeu {
         System.out.println("Au joueur " );//+ getNom())
     }
 
-     */
+
 
 
     public int getGraineDansTrou(int x, int y){
         return plateau[x][y];
+    }
+
+    public void ajouteUneGraine(int x, int y){
+        plateau[x][y]++;
     }
 
     //getter pour les tests
