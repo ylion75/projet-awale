@@ -15,28 +15,38 @@ public class Jeu implements Regles {
     }
 
     @Override
-    public int premierJoueur(){
+    public Joueur premierJoueur(){
         //de base c'est J1 qui commence, on pourra mettre un rand sur d'autres versions du jeu
         //0 correspond au joueur 1
-        return 0;
+        return J1;
     }
 
     @Override
-    public int joueurSuivant(int joueurActuel) {
-        if(joueurActuel == 0){
-            return 1;
+    public Joueur joueurSuivant(Joueur joueurActuel) {
+        if(joueurActuel == J1){
+            return J1;
         }
-        else return 0;
+        else return J2;
     }
 
     @Override
-    public void joueurUnCoup() {
+    public void jouerUnCoup() {
+        //si J1 (SUD) :
+        // joue 1 à 6
+        // tab[1][], séme vers la droite dans son côté
+        //si J2(NORD)
+        //joue 7 à 12
+        //sème vers la gauche de son côté
         /*
         if(plateau.getGraineDansTrou(x,y) != 0){
             plateau[x][y]
         }
 
          */
+    }
+
+    private void jouerVersDroite(){
+
     }
 
     @Override
@@ -48,6 +58,10 @@ public class Jeu implements Regles {
     public static void main(String[] args) {
         Jeu awale = new Jeu();
         awale.plateau.afficherPlateau();
+        System.out.println(awale.plateau.getGraineDansTrou(1,1));
+        awale.plateau.ajouteUneGraine(1,1);
+        System.out.println(awale.plateau.getGraineDansTrou(1,1));
+        System.out.println(awale.plateau.getGraineDansTrou(0,1));
     }
 
 }

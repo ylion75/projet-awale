@@ -3,9 +3,9 @@ public interface Regles {
     //Les méthodes sont publiques et non définies
 
     //int ou void ?
-    public int premierJoueur();
-    public int joueurSuivant(int joueurActuel);
-    public void joueurUnCoup();
+    public Joueur premierJoueur();
+    public Joueur joueurSuivant(Joueur joueurActuel);
+    public void jouerUnCoup();
     public abstract boolean finDePartie();
 
 }

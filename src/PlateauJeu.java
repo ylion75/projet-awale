@@ -86,6 +86,15 @@ public class PlateauJeu {
         plateau[x][y]++;
     }
 
+    //calcule le nombre de graine par rangée
+    // numeroJoueur est soit 0 (NORD) soit 1 (SUD)
+    public int nbGrainerangee(int numeroJoueur){
+        int cptGraine = 0;
+        for(int j = 0; j < trou; j++)
+            cptGraine += plateau[numeroJoueur][j];
+        return cptGraine;
+    }
+
     //getter pour les tests
     public int getRangee() {
         return rangee;
