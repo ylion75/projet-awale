@@ -4,12 +4,14 @@ public class Jeu implements Regles {
     private Joueur J2;
     private PlateauJeu plateau;
     private boolean coupPossible;
+    private boolean finDepartie;
 
     //On utilise le constructeur vide pour travailler sur la version de base de l'Awale
     public Jeu(){
         this.J1 = new Joueur("SUD");
         this.J2 = new Joueur("NORD");
         this.plateau = new PlateauJeu(2,6, 4);
+        boolean finDePartie = false;
     }
 
     @Override
@@ -37,7 +39,10 @@ public class Jeu implements Regles {
          */
     }
 
-
+    @Override
+    public boolean finDePartie() {
+        return false;
+    }
 
 
     public static void main(String[] args) {

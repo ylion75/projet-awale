@@ -6,5 +6,6 @@ public interface Regles {
     public int premierJoueur();
     public int joueurSuivant(int joueurActuel);
     public void joueurUnCoup();
+    public abstract boolean finDePartie();
 
 }
