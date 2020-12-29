@@ -103,6 +103,10 @@ public class PlateauJeu {
     public int getTrou() {
         return trou;
     }
+
+    public int[][] getPlateau() {
+        return plateau;
+    }
 }
 
 

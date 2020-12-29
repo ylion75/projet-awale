@@ -10,11 +10,12 @@ public class JeuTest {
     }
 
     @Test
-    public void joueurSuivantTest(){
-        //Jeu awale = new Jeu();
+    public void initialisationJeu(){
         Joueur[] tabjoueur = awale.getJoueurs();
         assertEquals(tabjoueur[0].getNumero(), 0);
         assertEquals(tabjoueur[1].getNumero(), 1);
+        assertEquals(tabjoueur[0].getNom(), "SUD");
+        assertEquals(tabjoueur[1].getNom(), "NORD");
     }
 
 

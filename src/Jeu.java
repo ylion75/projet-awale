@@ -1,5 +1,4 @@
 public class Jeu implements Regles {
-    //private static PlateauJeu plateau;
     private Joueur J1;
     private Joueur J2;
     private PlateauJeu plateau;
@@ -43,16 +42,55 @@ public class Jeu implements Regles {
         //boolean sens ? 
 
          */
+
+        //choixCase();
+        //egreiner();
+        //ramasser();
     }
 
-    public boolean isTrouVide(int x, int y){
-        if(plateau.getGraineDansTrou(x,y) == 0)
+
+    private void choixCase(Joueur joueurActif){
+        //if(!isTrouVide)
+        //si numero joueur == 0, alors il joue dans les cases 1-6
+        //si numero == 1, alors il joue dans les cases 7-12
+        //choix 0 = passe le boolean finDePartie a true;
+    }
+
+    /**
+     *
+     * @param numeroJoueur
+     * @param numeroTrou
+     * @return
+     * Attention, on met
+     */
+    private int[] semer(int numeroJoueur, int numeroTrou){
+        int nbGraine = plateau.getGraineDansTrou(numeroJoueur, numeroTrou);
+        int caseASemer = numeroTrou;
+        for(int i = nbGraine; i == 0; i--){
+            plateau.ajouteUneGraine(numeroJoueur,caseASemer);
+            if(numeroJoueur == 0)
+                caseASemer++;
+            else
+                caseASemer--;
+
+            if((caseASemer == plateau.getPlateau()[numeroJoueur].length - 1 && numeroJoueur == 0)
+            ||(caseASemer == 0 && numeroJoueur == 1)){
+                numeroJoueur = (numeroJoueur +1) %2;
+            }
+        }
+        return new int[]{numeroJoueur, caseASemer};
+    }
+
+    private void ramasser(int numeroJoueur, int numeroTrou){
+        // à rajouter : while pour vérifier que la ligne n'est pas vide
+        // while: vérifier si la case finale contient 2 ou 3 graines + vérifier qu'elle appartient au joueur adverse
+        // la case passe à 0, le nombre de graine passe au score du joueur
+    }
+
+    public boolean isTrouVide(int numeroJoueur, int numeroTrou){
+        if(plateau.getGraineDansTrou(numeroJoueur,numeroTrou) == 0)
             return true;
         else return false;
-    }
-
-    public void prendGraineAGauche(int x, int y, int positionTrou){
-        
     }
 
     @Override
