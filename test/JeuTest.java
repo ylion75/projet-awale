@@ -2,21 +2,20 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-
 public class JeuTest {
-    @Test
-    public void premierJoueurTest(){
-        Jeu awale = new Jeu();
-        assertEquals(awale.premierJoueur(), 0);
+    private Jeu awale;
+
+    public JeuTest(){
+        this.awale = new Jeu();
     }
 
-    /*
     @Test
-    public void joueurSuivantTest(Joueur joueurActuel){
-        Jeu awale = new Jeu();
-        assertEquals(awale.joueurSuivant(J1),0);
-        assertEquals(awale.joueurSuivant(J2),1);
+    public void joueurSuivantTest(){
+        //Jeu awale = new Jeu();
+        Joueur[] tabjoueur = awale.getJoueurs();
+        assertEquals(tabjoueur[0].getNumero(), 0);
+        assertEquals(tabjoueur[1].getNumero(), 1);
     }
 
-     */
+
 }

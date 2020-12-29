@@ -3,7 +3,6 @@ public class Jeu implements Regles {
     private Joueur J1;
     private Joueur J2;
     private PlateauJeu plateau;
-    private boolean coupPossible;
     private boolean finDepartie;
 
     //On utilise le constructeur vide pour travailler sur la version de base de l'Awale
@@ -41,12 +40,19 @@ public class Jeu implements Regles {
         if(plateau.getGraineDansTrou(x,y) != 0){
             plateau[x][y]
         }
+        //boolean sens ? 
 
          */
     }
 
-    private void jouerVersDroite(){
+    public boolean isTrouVide(int x, int y){
+        if(plateau.getGraineDansTrou(x,y) == 0)
+            return true;
+        else return false;
+    }
 
+    public void prendGraineAGauche(int x, int y, int positionTrou){
+        
     }
 
     @Override
@@ -54,6 +60,9 @@ public class Jeu implements Regles {
         return false;
     }
 
+    public Joueur[] getJoueurs() {
+        return new Joueur[]{J1, J2};
+    }
 
     public static void main(String[] args) {
         Jeu awale = new Jeu();
