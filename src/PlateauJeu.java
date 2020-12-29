@@ -78,12 +78,12 @@ public class PlateauJeu {
         System.out.println("Au joueur " );//+ getNom())
     }
     
-    public int getGraineDansTrou(int x, int y){
-        return plateau[x][y];
+    public int getGraineDansTrou(int numeroJoueur, int numeroTrou){
+        return plateau[numeroJoueur][numeroTrou];
     }
 
-    public void ajouteUneGraine(int x, int y){
-        plateau[x][y]++;
+    public void ajouteUneGraine(int numeroJoueur, int numeroTrou){
+        plateau[numeroJoueur][numeroTrou]++;
     }
 
     //calcule le nombre de graine par rangée
