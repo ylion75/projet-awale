@@ -5,7 +5,7 @@ public interface Regles {
     //int ou void ?
     public Joueur premierJoueur();
     public Joueur joueurSuivant(Joueur joueurActuel);
-    public void jouerUnCoup();
+    public void jouerUnCoup(Joueur joueurActif);
     public boolean finDePartie();
 
 }

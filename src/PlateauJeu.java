@@ -92,7 +92,7 @@ public class PlateauJeu {
     }
 
     /**
-     * Permet de calculer le nombre de graôine dans une rangée.
+     * Permet de calculer le nombre de graine dans une rangée.
      * @param numeroJoueur 0 correspond à J1 et 1 à J2
      * @return
      */

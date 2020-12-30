@@ -17,6 +17,7 @@ public class JeuTest {
         assertEquals(tabjoueur[1].getNumero(), 1);
         assertEquals(tabjoueur[0].getNom(), "SUD");
         assertEquals(tabjoueur[1].getNom(), "NORD");
+        assertEquals(awale.premierJoueur().getNumero(), 0);
     }
 
 
