@@ -82,12 +82,20 @@ public class PlateauJeu {
         return plateau[numeroJoueur][numeroTrou];
     }
 
+    /**
+     * Pour essaimer les graines dans les trous suivants
+     * @param numeroJoueur
+     * @param numeroTrou
+     */
     public void ajouteUneGraine(int numeroJoueur, int numeroTrou){
         plateau[numeroJoueur][numeroTrou]++;
     }
 
-    //calcule le nombre de graine par rangée
-    // numeroJoueur est soit 0 (NORD) soit 1 (SUD)
+    /**
+     * Permet de calculer le nombre de graôine dans une rangée.
+     * @param numeroJoueur 0 correspond à J1 et 1 à J2
+     * @return
+     */
     public int nbGrainerangee(int numeroJoueur){
         int cptGraine = 0;
         for(int j = 0; j < trou; j++)

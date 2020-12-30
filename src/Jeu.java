@@ -4,7 +4,9 @@ public class Jeu implements Regles {
     private PlateauJeu plateau;
     private boolean finDepartie;
 
-    //On utilise le constructeur vide pour travailler sur la version de base de l'Awale
+    /**
+     * Le constructeur vide permet de lancer la version classique de l'Awale
+     */
     public Jeu(){
         this.J1 = new Joueur("SUD");
         this.J2 = new Joueur("NORD");
@@ -12,10 +14,12 @@ public class Jeu implements Regles {
         boolean finDePartie = false;
     }
 
+    /**
+     * Par défaut, c'est le Joueur 1 qui commence.
+     * @return J1
+     */
     @Override
     public Joueur premierJoueur(){
-        //de base c'est J1 qui commence, on pourra mettre un rand sur d'autres versions du jeu
-        //0 correspond au joueur 1
         return J1;
     }
 
@@ -28,20 +32,8 @@ public class Jeu implements Regles {
     }
 
     @Override
-    public void jouerUnCoup() {
-        //si J1 (SUD) :
-        // joue 1 à 6
-        // tab[1][], séme vers la droite dans son côté
-        //si J2(NORD)
-        //joue 7 à 12
-        //sème vers la gauche de son côté
-        /*
-        if(plateau.getGraineDansTrou(x,y) != 0){
-            plateau[x][y]
-        }
-        //boolean sens ? 
+    public void jouerUnCoup(Joueur joueuractif) {
 
-         */
 
         //choixCase();
         //egreiner();
@@ -49,8 +41,11 @@ public class Jeu implements Regles {
     }
 
 
-    private void choixCase(Joueur joueurActif){
+    private void choixCase(Joueur joueurActif, int choixUtilisateur){
         //if(!isTrouVide)
+        if(joueurActif == J1){
+
+        }
         //si numero joueur == 0, alors il joue dans les cases 1-6
         //si numero == 1, alors il joue dans les cases 7-12
         //choix 0 = passe le boolean finDePartie a true;

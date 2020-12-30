@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 public class JeuTest {
     private Jeu awale;
 
+    //initialisation hors des jeux de tests parce que le numéro de Joueur est déclaré static
     public JeuTest(){
         this.awale = new Jeu();
     }
