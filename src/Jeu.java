@@ -85,6 +85,7 @@ public class Jeu implements Regles {
         while(plateau.nbGrainerangee(joueurAdverse) > 0)
             semer(numeroJoueur, numeroTrou);
         // while pour vérifier que la ligne n'est pas vide
+        while()
         // while: vérifier si la case finale contient 2 ou 3 graines + vérifier qu'elle appartient au joueur adverse
         // la case passe à 0, le nombre de graine passe au score du joueur
     }

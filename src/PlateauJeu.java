@@ -8,6 +8,8 @@ public class PlateauJeu {
     private int trou; //correspond à une case (ligne)
     private int graineParTrou;
     private int[][] plateau;
+    private int ligneN;
+    private int ligneS;
 
 
     public PlateauJeu(int rangee, int trou, int graineParTrou) {
@@ -17,7 +19,7 @@ public class PlateauJeu {
 
         this.plateau = new int[rangee][trou];
         for (int row = 0; row < this.plateau.length; row++) {
-            for (int col = 0; col < this.plateau[row].length; col++) {  //Intellij sugere Arrays.fill(this.plateau[i], this.graineParTrou);
+            for (int col = 0; col < this.plateau[row].length; col++) {
                 this.plateau[row][col] = this.graineParTrou;
             }
         }
@@ -40,6 +42,17 @@ public class PlateauJeu {
 
     public void setGraineParTrou(int graineParTrou) {
         this.graineParTrou = graineParTrou;
+    }
+
+    public int graineParLigne(){ //A finir
+        for (int i=0,somLigne=0;i<5;i++)
+        {
+            for(int j=0;j<5;j++)
+            {
+                somLigne=somLigne+plateau[rangee][trou];
+            }
+            System.out.println("la somme de la ligne"+i+"est égale à "+somLigne);
+        }
     }
 
     public void afficherPlateau() {
@@ -72,7 +85,10 @@ public class PlateauJeu {
                 System.out.print("  " + j + "   ");
             }
         System.out.println(); //saut de ligne
-        System.out.println("Nord a " ); //reflechir à une var graineLigne
+
+
+
+        System.out.println("Nord a " );
         System.out.println("Sud a " );
 
         System.out.println("Au joueur " );//+ getNom())
@@ -102,6 +118,8 @@ public class PlateauJeu {
             cptGraine += plateau[numeroJoueur][j];
         return cptGraine;
     }
+
+    //public int jouer
 
     //getter pour les tests
     public int getRangee() {
