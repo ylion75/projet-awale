@@ -78,6 +78,7 @@ public class Jeu implements Regles {
      * @return
      * Attention, on met
      */
+
     private int[] semer(int numeroJoueur, int numeroTrou){
         int nbGraine = plateau.getGraineDansTrou(numeroJoueur, numeroTrou);
         int caseASemer = numeroTrou;
@@ -96,18 +97,34 @@ public class Jeu implements Regles {
         return new int[]{numeroJoueur, caseASemer};
     }
 
+
+
+    private int[] semer2(int numeroJoueur, int numeroTrou) {
+        int nbGraine = plateau.getGraineDansTrou(numeroJoueur, numeroTrou);
+        int caseASemer = numeroTrou;
+        while (nbGraine != 0) {
+            plateau.ajouteUneGraine(numeroJoueur, caseASemer);
+            caseASemer++;
+            nbGraine--;
+        }
+        return new int[]{numeroJoueur, caseASemer};
+    }
+    /*
     private void ramasser(int numeroJoueur, int numeroTrou){
         int joueurAdverse;
         if(numeroJoueur == 0)
             joueurAdverse = 1;
         else joueurAdverse = 0;
         while(plateau.nbGrainerangee(joueurAdverse) > 0)
-            semer(numeroJoueur, numeroTrou);
+            //plateau[numeroJoueur,numeroJoueur];
+            //semer(numeroJoueur, numeroTrou);
         // while pour vérifier que la ligne n'est pas vide
         //while()
         // while: vérifier si la case finale contient 2 ou 3 graines + vérifier qu'elle appartient au joueur adverse
         // la case passe à 0, le nombre de graine passe au score du joueur
     }
+
+     */
 
     public boolean isTrouVide(int numeroJoueur, int numeroTrou){
         if(plateau.getGraineDansTrou(numeroJoueur,numeroTrou) == 0)
@@ -134,10 +151,26 @@ public class Jeu implements Regles {
         System.out.println();
         //System.out.println(choixCase(0,3));;
         choixCase(12);
+        //var semer = semer(0, 1);
+        //System.out.println(semer);
+        //awale.plateau.semer(0,1);
 
+        /*
+        awale.semer(0,1);
+        awale.semer(0,3);
+        awale.plateau.afficherPlateau();
+        awale.semer(0,4);
+        //pourquoi ca sème pas ?
+        awale.semer(0,4);
+        awale.semer(1,3);
+        awale.semer(1,4);
+        awale.plateau.afficherPlateau();
+
+         */
 
         //System.out.println(choixCase(11));
-
+        awale.semer2(0,2);
+        awale.plateau.afficherPlateau();
     }
 
 }
