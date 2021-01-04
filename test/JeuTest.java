@@ -1,4 +1,5 @@
 import org.junit.Test;
+import org.junit.experimental.theories.suppliers.TestedOn;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,6 +20,17 @@ public class JeuTest {
         assertEquals(tabjoueur[1].getNom(), "NORD");
         assertEquals(awale.premierJoueur().getNumero(), 0);
     }
+
+    /*
+    @Test
+    public int[] choixCaseTest(int i, int i1){
+        choixCaseTest = int[]choixCase(0,3);
+        assertEquals(choixCaseTest(1,3), choixCase);
+    }
+
+     */
+
+
 
 
 }

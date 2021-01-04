@@ -40,14 +40,33 @@ public class Jeu implements Regles {
         //ramasser();
     }
 
-
-    private void choixCase(int joueurActif, int choixUtilisateur){
+    //version qui marche pas
+    /*
+        private static int[] choixCase(int joueurActif, int choixUtilisateur){
         assert(choixUtilisateur >= 0 && choixUtilisateur <= 12);
         //if(!isTrouVide)
-
+        if(joueurActif == 0)
+            return new int[]{0, choixUtilisateur - 1};
+        else return new int[]{1, ((choixUtilisateur - 12) * - 1)};
         //si numero joueur == 0, alors il joue dans les cases 1-6
         //si numero == 1, alors il joue dans les cases 7-12
         //choix 0 = passe le boolean finDePartie a true;
+    }
+     */
+
+    private static int choixCase(int choixUtilisateur){
+        int caseChoisie = 0;
+        assert(choixUtilisateur >= 0 && choixUtilisateur <= 12);
+        //if(!isTrouVide)
+        if(choixUtilisateur > 0 && choixUtilisateur < 7){
+            caseChoisie = choixUtilisateur - 1;
+        System.out.println(caseChoisie);
+        }
+        if(choixUtilisateur > 6) {
+            caseChoisie = (choixUtilisateur - 12) * (-1);
+            System.out.println(caseChoisie);
+        }
+        return caseChoisie;
     }
 
 
@@ -112,6 +131,13 @@ public class Jeu implements Regles {
         awale.plateau.ajouteUneGraine(1,1);
         System.out.println(awale.plateau.getGraineDansTrou(1,1));
         System.out.println(awale.plateau.getGraineDansTrou(0,1));
+        System.out.println();
+        //System.out.println(choixCase(0,3));;
+        choixCase(12);
+
+
+        //System.out.println(choixCase(11));
+
     }
 
 }
