@@ -82,11 +82,24 @@ public class PlateauJeu {
         return plateau[numeroJoueur][numeroTrou];
     }
 
-    //peut int pour faire geter et seter en même temps parce que les deux fonctions sont appelées en même temps
-    public int viderLeTrou(int numeroJoueur, int numeroTrou){
+
+    public void viderLeTrou(int numeroJoueur, int numeroTrou){
+        plateau[numeroJoueur][numeroTrou] = 0;
+    }
+
+    /* a supprimer si inutile. Version qui renvoie un int pour le cpt poinnt
+       //peut int pour faire geter et seter en même temps parce que les deux fonctions sont appelées en même temps
+
+    public void viderLeTrou(int numeroJoueur, int numeroTrou){
         int getGraine = getGraineDansTrou(numeroJoueur,numeroTrou);
         plateau[numeroJoueur][numeroTrou] = 0;
-        return getGraine;
+        //return getGraine;
+    }
+     */
+
+    //fonction pour test unitaire
+    public void setGraineDansTrou(int numeroJoueur, int numeroTrou, int nbGraine){
+        plateau[numeroJoueur][numeroTrou] = nbGraine;
     }
 
     /**

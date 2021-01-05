@@ -2,6 +2,7 @@ import org.junit.Test;
 import org.junit.experimental.theories.suppliers.TestedOn;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class JeuTest {
     private Jeu awale;
@@ -44,6 +45,21 @@ public class JeuTest {
         //a changé de camp donc normalement camp d'en face
         assertEquals(semerTest2[0],0);
         assertEquals(semerTest2[1],1);
+
+    }
+
+    @Test
+    public void ramasserTest(){
+        PlateauJeu P = new PlateauJeu();
+        awale.ramasser(0,1);
+        assertEquals(p.getGraineDansTrou(0,1),4);
+
+        //PlateauJeu.awale.setGraineDansTrou(0,1,3);
+
+        awale.ramasser(0,1);
+        assertEquals(plateau.getGraineDansTrou(0,1),3);
+
+
 
 
     }
