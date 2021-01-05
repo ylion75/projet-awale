@@ -36,7 +36,7 @@ public class Jeu implements Regles {
     }
 
     @Override
-    public void jouerUnCoup(Joueur joueuractif) {
+    public void jouerUnCoup(Joueur joueurActif) {
 
         //Décomposition en 3 sous méthodes (private)
         //choixCase();
@@ -58,11 +58,9 @@ public class Jeu implements Regles {
         //if(!isTrouVide)
         if(choixUtilisateur > 0 && choixUtilisateur < 7){
             caseChoisie = choixUtilisateur - 1;
-        System.out.println(caseChoisie);
         }
         else if(choixUtilisateur > 6) {
             caseChoisie = (choixUtilisateur - 12) * (-1);
-            System.out.println(caseChoisie);
         }
         else if(choixUtilisateur == 0){
             finDepartie = true;
@@ -91,7 +89,6 @@ public class Jeu implements Regles {
             numeroTrou = caseSuivante[1];
             plateau.ajouteUneGraine(numeroJoueur,numeroTrou);
         }
-        //caseASemer ici correspond à la dernière case semée
         return new int[]{numeroJoueur, numeroTrou};
     }
 
@@ -122,32 +119,31 @@ public class Jeu implements Regles {
         return new int[]{numeroJoueur, numeroTrou};
     }
 
-
     private void ramasser(int numeroJoueur, int numeroTrou, Joueur joueurActif){
-        while()
+        int nbGraineCaseJouee = plateau.getGraineDansTrou(numeroJoueur, numeroTrou);
+        int[] coordCasePrecedente = casePrecedente(numeroJoueur, numeroTrou);
+        int nbGraineCasePrecedente = plateau.getGraineDansTrou(coordCasePrecedente[0],coordCasePrecedente[1]);
+        //condition qu'on a oublié.
+        Quand joueurActif = J1 => il joue en face et vice versa;
+
+
+        if(nbGraineCaseJouee >= 2 || nbGraineCaseJouee <= 3){
+            joueurActif.setScore(nbGraineCaseJouee);
+            plateau.viderLeTrou(numeroJoueur, numeroTrou);
+        }
+        if(casePrecedente(numeroJoueur,numeroTrou))
+
+
+
     //on ramasse quand la case à 2 ou 3 graines
         //on vide la case et on rajoute au score du joueur
     //si on ramasse, on check la case précedente
         //si celle ci a 2 ou 3 graines, on ramasse
     //si on ramasse pas, on s'arrête là
 
-
-    /*
-
-        int joueurAdverse;
-        if(numeroJoueur == 0)
-            joueurAdverse = 1;
-        else joueurAdverse = 0;
-        while(plateau.nbGrainerangee(joueurAdverse) > 0)
-            //plateau[numeroJoueur,numeroJoueur];
-            //semer(numeroJoueur, numeroTrou);
-        // while pour vérifier que la ligne n'est pas vide
-        //while()
-        // while: vérifier si la case finale contient 2 ou 3 graines + vérifier qu'elle appartient au joueur adverse
-        // la case passe à 0, le nombre de graine passe au score du joueur
-
-     */
+            //petite idée : redecouper fonction : checkDroite & checkGauche
     }
+    */
 
 
 
@@ -176,41 +172,7 @@ public class Jeu implements Regles {
         System.out.println();
         //System.out.println(choixCase(0,3));;
         awale.choixCase(12);
-        //var semer = semer(0, 1);
-        //System.out.println(semer);
-        //awale.plateau.semer(0,1);
 
-        /*
-        awale.semer(0,1);
-        awale.semer(0,3);
-        awale.plateau.afficherPlateau();
-        awale.semer(0,4);
-        //pourquoi ca sème pas ?
-        awale.semer(0,4);
-        awale.semer(1,3);
-        awale.semer(1,4);
-        awale.plateau.afficherPlateau();
-
-         */
-
-        //System.out.println(choixCase(11));
-        //awale.semer2(0,2);
-        //awale.plateau.afficherPlateau();
     }
-
-        /*
-    //test de Simon, a voir si utile
-    private int[] semer2(int numeroJoueur, int numeroTrou) {
-        int nbGraine = plateau.getGraineDansTrou(numeroJoueur, numeroTrou);
-        int caseASemer = numeroTrou;
-        while (nbGraine != 0) {
-            plateau.ajouteUneGraine(numeroJoueur, caseASemer);
-            caseASemer++;
-            nbGraine--;
-        }
-        return new int[]{numeroJoueur, caseASemer};
-    }
-
-     */
 
 }
