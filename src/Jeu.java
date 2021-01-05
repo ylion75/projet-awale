@@ -103,6 +103,15 @@ public class Jeu implements Regles {
         else if(numeroJoueur == 1)
             numeroTrou --;
         return new int[]{numeroJoueur, numeroTrou};
+
+
+    }
+
+    private boolean checkCaseSuivante(int numeroJoueur, int numeroTrou){
+        int[]graineCaseSuivante = casePrecedente(numeroJoueur, numeroTrou);
+        if(plateau.getGraineDansTrou(graineCaseSuivante[0], graineCaseSuivante[1])>= 2 || plateau.getGraineDansTrou(graineCaseSuivante[0], graineCaseSuivante[1])<= 3)
+            return true;
+        else return false;
     }
 
     //on inverse les numéros de joueur et l'incrémentation
@@ -113,43 +122,11 @@ public class Jeu implements Regles {
             numeroJoueur = (numeroJoueur +1) %2;
         }
         else if(numeroJoueur == 1)
-            numeroTrou--;
+            numeroTrou++;
         else if(numeroJoueur == 0)
-            numeroTrou ++;
+            numeroTrou--;
         return new int[]{numeroJoueur, numeroTrou};
     }
-
-
-    //peut être mettre variable Joueur joueuractif en paramètre
-    public void ramasser(int numeroJoueur, int numeroTrou){
-        int nbGraineCaseJouee = plateau.getGraineDansTrou(numeroJoueur, numeroTrou);
-        if(nbGraineCaseJouee > 1 || nbGraineCaseJouee < 6){
-            joueurActif.setScore(nbGraineCaseJouee);
-            plateau.viderLeTrou(numeroJoueur, numeroTrou);
-        }
-
-    }
-    /*
-      while(checkCasePrecedente(numeroJoueur,numeroTrou))
-
-
-        //condition qu'on a oublié.
-        Quand joueurActif = J1 => il joue en face et vice versa;
-
-        if(casePrecedente(numeroJoueur,numeroTrou));
-
-    //on ramasse quand la case à 2 ou 3 graines
-        //on vide la case et on rajoute au score du joueur
-    //si on ramasse, on check la case précedente
-        //si celle ci a 2 ou 3 graines, on ramasse
-    //si on ramasse pas, on s'arrête là
-
-            //petite idée : redecouper fonction : checkDroite & checkGauche
-
-     */
-
-
-
 
     private boolean checkCasePrecedente(int numeroJoueur, int numeroTrou){
         int[]graineCasePrecedente = casePrecedente(numeroJoueur, numeroTrou);
@@ -158,15 +135,36 @@ public class Jeu implements Regles {
         else return false;
     }
 
-    private boolean checkCaseSuivante(int numeroJoueur, int numeroTrou){
-        int[]graineCaseSuivante = casePrecedente(numeroJoueur, numeroTrou);
-        if(plateau.getGraineDansTrou(graineCaseSuivante[0], graineCaseSuivante[1])>= 2 || plateau.getGraineDansTrou(graineCaseSuivante[0], graineCaseSuivante[1])<= 3)
-            return true;
-        else return false;
+    public void ramasserCasePrecedente (int numeroJoueur, int numeroTrou, Joueur joueurActif){
+        int[] casePrecedente = casePrecedente(numeroJoueur, numeroTrou);
+        if(checkCasePrecedente(numeroJoueur, numeroTrou))
+            ramasser(casePrecedente[0],casePrecedente[1], joueurActif);
+    }
+
+    //peut être mettre variable Joueur joueuractif en paramètre
+    public void ramasser(int numeroJoueur, int numeroTrou, Joueur joueurActif){
+        int nbGraineCaseJouee = plateau.getGraineDansTrou(numeroJoueur, numeroTrou);
+        if(nbGraineCaseJouee >= 2 || nbGraineCaseJouee <= 3){
+            joueurActif.setScore(nbGraineCaseJouee);
+            plateau.viderLeTrou(numeroJoueur, numeroTrou);
+        }
     }
 
 
+    /*
+      while(checkCasePrecedente(numeroJoueur,numeroTrou))
 
+
+        //condition qu'on a oublié.
+        Quand joueurActif = J1 => il joue en face et vice versa;
+
+    //on ramasse quand la case à 2 ou 3 graines
+        //on vide la case et on rajoute au score du joueur
+    //si on ramasse, on check la case précedente
+        //si celle ci a 2 ou 3 graines, on ramasse
+    //si on ramasse pas, on s'arrête là
+
+     */
 
 
     public boolean isTrouVide(int numeroJoueur, int numeroTrou){
@@ -187,13 +185,32 @@ public class Jeu implements Regles {
     public static void main(String[] args) {
         Jeu awale = new Jeu();
         awale.plateau.afficherPlateau();
+
+
+        awale.plateau.setGraineDansTrou(0,0,3);
+        awale.plateau.setGraineDansTrou(0,1,3);
+        awale.plateau.setGraineDansTrou(0,2,3);
+
+
+        awale.ramasser(0,2, awale.J1);
+        awale.ramasserCasePrecedente(0,2, awale.J1);
+        awale.plateau.afficherPlateau();
+
+
+        /*
+        Jeu de test à l'arrache pour ramasser
         System.out.println(awale.plateau.getGraineDansTrou(1,1));
-        //awale.plateau.ajouteUneGraine(1,1);
-        System.out.println(awale.plateau.getGraineDansTrou(1,1));
-        System.out.println(awale.plateau.getGraineDansTrou(0,1));
-        System.out.println();
-        //System.out.println(choixCase(0,3));;
-        awale.choixCase(12);
+        awale.plateau.setGraineDansTrou(0,1,3);
+        awale.plateau.afficherPlateau();
+        awale.ramasser(0,1, awale.J1);
+        awale.plateau.afficherPlateau();
+        int scoreTest = awale.J1.getScore();
+        //int scoreTest = awale.J1.getScore();
+        System.out.println(scoreTest);
+
+         */
+
+
 
     }
 

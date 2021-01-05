@@ -22,7 +22,11 @@
         this.score = score;
     }
 
-    public void ajouterScore(int score){
+    public int getScore(){
+        return score;
+        }
+
+        public void ajouterScore(int score){
         setScore(this.score + score);
     }
 }
