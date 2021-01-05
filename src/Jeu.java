@@ -1,3 +1,6 @@
+import java.sql.SQLOutput;
+import java.util.Scanner;
+
 public class Jeu implements Regles {
     private Joueur J1;
     private Joueur J2;
@@ -40,6 +43,17 @@ public class Jeu implements Regles {
 
         //Décomposition en 3 sous méthodes (private)
         //choixCase();
+        int choix;
+        try ( Scanner choixS = new Scanner(System.in)) {
+            System.out.println("ChoixS");
+            choix = choixS.nextInt();
+            System.out.println(choix);
+        }
+        //choixCase(choix);
+        //semer();
+
+
+
             //controle a faire : si la case n'est pas possible, lui redemander
             //lorsqu'il y a 0 graine ou que la case ne lui appartient pas
         //semer();
@@ -141,6 +155,12 @@ public class Jeu implements Regles {
             ramasser(casePrecedente[0],casePrecedente[1], joueurActif);
     }
 
+    public void ramasserCaseSuivante (int numeroJoueur, int numeroTrou, Joueur joueurActif){
+        int[] caseSuivante = caseSuivante(numeroJoueur, numeroTrou);
+        if(checkCaseSuivante(numeroJoueur, numeroTrou))
+            ramasser(caseSuivante[0],caseSuivante[1], joueurActif);
+    }
+
     //peut être mettre variable Joueur joueuractif en paramètre
     public void ramasser(int numeroJoueur, int numeroTrou, Joueur joueurActif){
         int nbGraineCaseJouee = plateau.getGraineDansTrou(numeroJoueur, numeroTrou);
@@ -186,15 +206,35 @@ public class Jeu implements Regles {
         Jeu awale = new Jeu();
         awale.plateau.afficherPlateau();
 
+
+        try  ( Scanner choixS = new Scanner(System.in)){
+            System.out.println("ChoixS");
+            int choix = choixS.nextInt();
+            System.out.println(choix);
+        }
+
+
+
+
         //test Simon
         awale.plateau.setGraineDansTrou(0,0,3);
         awale.plateau.setGraineDansTrou(0,1,3);
         awale.plateau.setGraineDansTrou(0,2,3);
 
 
+
+
+/*  Test ramasser case  suivante
         awale.ramasser(0,2, awale.J1);
         awale.ramasserCasePrecedente(0,2, awale.J1);
         awale.plateau.afficherPlateau();
+        System.out.println();
+        System.out.println("Le prochain c'est case suivante");
+
+        awale.ramasser(0,2, awale.J1);
+        awale.ramasserCaseSuivante(0,2, awale.J1);
+        awale.plateau.afficherPlateau();
+*/
 
 
         /*
