@@ -82,6 +82,13 @@ public class PlateauJeu {
         return plateau[numeroJoueur][numeroTrou];
     }
 
+    //peut int pour faire geter et seter en même temps parce que les deux fonctions sont appelées en même temps
+    public int viderLeTrou(int numeroJoueur, int numeroTrou){
+        int getGraine = getGraineDansTrou(numeroJoueur,numeroTrou);
+        plateau[numeroJoueur][numeroTrou] = 0;
+        return getGraine;
+    }
+
     /**
      * Pour essaimer les graines dans les trous suivants
      * @param numeroJoueur
