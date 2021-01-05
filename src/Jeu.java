@@ -186,7 +186,7 @@ public class Jeu implements Regles {
         Jeu awale = new Jeu();
         awale.plateau.afficherPlateau();
 
-
+        //test Simon
         awale.plateau.setGraineDansTrou(0,0,3);
         awale.plateau.setGraineDansTrou(0,1,3);
         awale.plateau.setGraineDansTrou(0,2,3);
