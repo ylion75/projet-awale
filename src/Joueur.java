@@ -1,13 +1,19 @@
     public class Joueur {
     private String nom;
     private int numero;
-    private static int cpt = 0; //compteur static pour attribuer un numéro au joueur
+    private int cpt = 0; //compteur static pour attribuer un numéro au joueur
     private int score;
 
     public Joueur(String nom){
         this.nom = nom;
         this.numero = cpt++;
         this.score = 0;
+    }
+
+    public Joueur joueurSuivant(Joueur joueurActuel) {
+        if (joueurActuel == J1) {
+            return J1;
+        } else return J2;
     }
 
     public String getNom() {

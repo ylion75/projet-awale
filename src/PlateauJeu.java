@@ -98,8 +98,8 @@ public class PlateauJeu {
                 System.out.print("  " + j + "   ");
             }
         System.out.println(); //saut de ligne
-        System.out.println("Nord a " ); //reflechir à une var graineLigne
-        System.out.println("Sud a " );
+        System.out.println("Nord a " + nbGrainerangee(1) + " graine(s)" ); //reflechir à une var graineLigne
+        System.out.println("Sud a " + nbGrainerangee(0) + " graine(s)");
 
         System.out.println("Au joueur " );//+ getNom())
     }
@@ -111,21 +111,6 @@ public class PlateauJeu {
 
     public void viderLeTrou(int numeroJoueur, int numeroTrou){
         plateau[numeroJoueur][numeroTrou] = 0;
-    }
-
-    /* a supprimer si inutile. Version qui renvoie un int pour le cpt poinnt
-       //peut int pour faire geter et seter en même temps parce que les deux fonctions sont appelées en même temps
-
-    public void viderLeTrou(int numeroJoueur, int numeroTrou){
-        int getGraine = getGraineDansTrou(numeroJoueur,numeroTrou);
-        plateau[numeroJoueur][numeroTrou] = 0;
-        //return getGraine;
-    }
-     */
-
-    //fonction pour test unitaire
-    public void setGraineDansTrou(int numeroJoueur, int numeroTrou, int nbGraine){
-        plateau[numeroJoueur][numeroTrou] = nbGraine;
     }
 
     /**
@@ -149,17 +134,22 @@ public class PlateauJeu {
         return cptGraine;
     }
 
-    //getter pour les tests
-    public int getRangee() {
-        return rangee;
-    }
-
     public int getTrou() {
         return trou;
     }
 
     public int[][] getPlateau() {
         return plateau;
+    }
+
+    //getter pour les tests
+    public int getRangee() {
+        return rangee;
+    }
+
+    //fonction pour test unitaire
+    public void setGraineDansTrou(int numeroJoueur, int numeroTrou, int nbGraine){
+        plateau[numeroJoueur][numeroTrou] = nbGraine;
     }
 }
 

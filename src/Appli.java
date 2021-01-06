@@ -6,6 +6,23 @@ public class Appli extends Jeu {
         Jeu awale = new Jeu();
         awale.plateau.afficherPlateau();
 
+        awale.ramasser(0,2, awale.J1);
+        awale.ramasserCasePrecedente(0,2, awale.J1);
+        awale.plateau.afficherPlateau();
+        System.out.println();
+        System.out.println("Le prochain c'est case suivante");
+
+        awale.ramasser(0,2, awale.J1);
+        awale.ramasserCaseSuivante(0,2, awale.J1);
+        awale.plateau.afficherPlateau();
+
+        awale.ramasser(1,2, awale.J1);
+        awale.ramasserCaseSuivante(1,2, awale.J1);
+        awale.plateau.afficherPlateau();
+
+        //int test = awale.choixDuJoueur(awale.J1);
+        /System.out.println(test);
+
 
 
         /*

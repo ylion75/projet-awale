@@ -3,41 +3,35 @@ import java.util.Scanner;
 
 public class Jeu implements Regles {
     protected PlateauJeu plateau;
-    private Joueur J1;
-    private Joueur J2;
+    protected Joueur J1;
+    protected Joueur J2;
     private boolean finDepartie;
 
     /**
      * Le constructeur vide permet de lancer la version classique de l'Awale
      */
-    public Jeu(){
+    public Jeu() {
         this.J1 = new Joueur("SUD");
         this.J2 = new Joueur("NORD");
-        this.plateau = new PlateauJeu(2,6, 4);
+        this.plateau = new PlateauJeu(2, 6, 4);
         boolean finDePartie = false;
     }
 
     /**
      * Par défaut, c'est le Joueur 1 qui commence.
+     *
      * @return J1
      */
     @Override
-    public Joueur premierJoueur(){
+    public Joueur premierJoueur() {
         return J1;
     }
 
-    @Override
-    public Joueur joueurSuivant(Joueur joueurActuel) {
-        if(joueurActuel == J1){
-            return J1;
-        }
-        else return J2;
-    }
-
-    public boolean getFinDePartie(){
+    public boolean getFinDePartie() {
         return finDepartie;
     }
 
+    /*
     public int choixDuJoueur(Joueur joueurActif) {
         int caseTape;
         try (Scanner choixS = new Scanner(System.in)) {
@@ -47,21 +41,42 @@ public class Jeu implements Regles {
                 System.out.println("Et aussi dans le jeu");
                 caseTape = choixS.nextInt();
             }
+            //la on va check au sud
+            if (isTrouVide(joueurActif.getnumero(), caseTape) == true) {
+                System.out.println("Une case avec des graines !");
+                caseTape = choixS.nextInt();
+            }
+
             if (joueurActif == J1) {
-                while (caseTape > 7 || caseTape < 0 && isTrouVide(J1.getNumero(), caseTape) == true)  {
-                    System.out.println("on a dit dans ta ligne et une case avec des graines ! (ligne " + joueurActif.getNom() + ")");
+                while (isTrouVide(J1.getNumero(), caseTape) == true) {
+                    System.out.println("Une case pleine !");
                     caseTape = choixS.nextInt();
-                }
-            }
-            else if (joueurActif == J2) {
-                while (caseTape < 7 || caseTape > 13 && isTrouVide(J2.getNumero(), caseTape) == true) {
-                    System.out.println("on a dit dans ta ligne !(ligne " + joueurActif.getNom() + ")");
+
+
+                    while (caseTape > 7 || caseTape < 0) {
+                        System.out.println("on a dit dans ta ligne et une case avec des graines ! (ligne " + joueurActif.getNom() + ")");
+                        caseTape = choixS.nextInt();
+                    }
+
+                } /*else if (joueurActif == J2) {
+                while (isTrouVide(J1.getNumero(), caseTape) == true) {
+                    System.out.println("Une case pleine !");
                     caseTape = choixS.nextInt();
+
+
+
+                    while (isTrouVide(J2.getNumero(), caseTape) == true && caseTape < 7 || caseTape > 13) {
+                        System.out.println("on a dit dans ta ligne !(ligne " + joueurActif.getNom() + ")");
+                        caseTape = choixS.nextInt();
+                    }
                 }
+                return caseTape;
             }
-            return caseTape;
         }
     }
+    */
+
+
 
     @Override
     public void jouerUnCoup(Joueur joueurActif, int choixUtilisateur){

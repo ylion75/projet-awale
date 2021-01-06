@@ -5,15 +5,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class JeuTest {
-    /*
-    //private Jeu awale;
-
-    //initialisation hors des jeux de tests parce que le numéro de Joueur est déclaré static
-    public JeuTest() {
-        this.awale = new Jeu();
-    }
-
-     */
 
     @Test
     public void initialisationJeu() {
@@ -25,7 +16,6 @@ public class JeuTest {
         assertEquals(tabjoueur[1].getNom(), "NORD");
         assertEquals(awale.premierJoueur().getNumero(), 0);
     }
-
 
     @Test
     public void choixCaseTest() {
@@ -54,11 +44,10 @@ public class JeuTest {
 
     }
 
-
     @Test
     public void ramasserTest() {
         Jeu awale = new Jeu();
-        awale.getJoueurs();
+
 
         //awale.ramasser(0, 1,awale.J1);
 
