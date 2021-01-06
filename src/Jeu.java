@@ -2,9 +2,9 @@ import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Jeu implements Regles {
+    protected PlateauJeu plateau;
     private Joueur J1;
     private Joueur J2;
-    private PlateauJeu plateau;
     private boolean finDepartie;
 
     /**
@@ -26,16 +26,16 @@ public class Jeu implements Regles {
         return J1;
     }
 
-    public boolean getFinDePartie(){
-        return finDepartie;
-    }
-
     @Override
     public Joueur joueurSuivant(Joueur joueurActuel) {
         if(joueurActuel == J1){
             return J1;
         }
         else return J2;
+    }
+
+    public boolean getFinDePartie(){
+        return finDepartie;
     }
 
     public int choixDuJoueur(Joueur joueurActif) {
@@ -187,57 +187,6 @@ public class Jeu implements Regles {
         return new Joueur[]{J1, J2};
     }
 
-    public static void main(String[] args) {
-        Jeu awale = new Jeu();
-        awale.plateau.afficherPlateau();
 
-
-        try  ( Scanner choixS = new Scanner(System.in)){
-            System.out.println("ChoixS");
-            int choix = choixS.nextInt();
-            System.out.println(choix);
-        }
-
-
-
-        /*
-        //test Simon
-        awale.plateau.setGraineDansTrou(0,0,3);
-        awale.plateau.setGraineDansTrou(0,1,3);
-        awale.plateau.setGraineDansTrou(0,2,3);
-
-
-
-        //Test ramasser case  suivante
-        awale.ramasser(0,2, awale.J1);
-        awale.ramasserCasePrecedente(0,2, awale.J1);
-        awale.plateau.afficherPlateau();
-        System.out.println();
-        System.out.println("Le prochain c'est case suivante");
-
-        awale.ramasser(0,2, awale.J1);
-        awale.ramasserCaseSuivante(0,2, awale.J1);
-        awale.plateau.afficherPlateau();
-
-
-
-
-        //Jeu de test à l'arrache pour ramasser
-        System.out.println(awale.plateau.getGraineDansTrou(1,1));
-        awale.plateau.setGraineDansTrou(0,1,3);
-        awale.plateau.afficherPlateau();
-        awale.ramasser(0,1, awale.J1);
-        awale.plateau.afficherPlateau();
-        int scoreTest = awale.J1.getScore();
-        //int scoreTest = awale.J1.getScore();
-        System.out.println(scoreTest);
-
-         */
-
-
-
-
-
-    }
 
 }
