@@ -68,22 +68,20 @@ public class Jeu implements Regles {
         int indiceCase = choixCase(choixUtilisateur);
 
         if(joueurActif == J1){
-            if(checkSiCasePrenable(0,indiceCase))
-                ramasser(0,indiceCase,joueurActif);
-                    //check que la rangée adverse n'est pas vide
-                    //attention il manque peut être une condition, peut être qu'il va boucler sur tout le plateau même en face
-                    while(plateau.nbGrainerangee(1) > 0){
-                        ramasserCasePrecedente(0,indiceCase, joueurActif);
-                        ramasserCaseSuivante(0,indiceCase, joueurActif);
-                    }
+            ramasser(J1.getNumero(),indiceCase,joueurActif);
+                //check que la rangée adverse n'est pas vide
+                //attention il manque peut être une condition, peut être qu'il va boucler sur tout le plateau même en face
+                while(plateau.nbGrainerangee(J2.getNumero()) > 0){
+                    ramasserCasePrecedente(0,indiceCase, joueurActif);
+                    ramasserCaseSuivante(0,indiceCase, joueurActif);
+                }
         }
         else if(joueurActif == J2){
-            if(checkSiCasePrenable(1,indiceCase))
-                ramasser(1,indiceCase,joueurActif);
-                    //check rangée opposée
-                    while(plateau.nbGrainerangee(0)> 0);
-                    ramasserCasePrecedente(0, indiceCase, joueurActif);
-                    ramasserCaseSuivante(0, indiceCase, joueurActif);
+            ramasser(1,indiceCase,joueurActif);
+                //check rangée opposée
+                while(plateau.nbGrainerangee(0)> 0);
+                ramasserCasePrecedente(0, indiceCase, joueurActif);
+                ramasserCaseSuivante(0, indiceCase, joueurActif);
         }
         //Décomposition en 3 sous méthodes (private)
         //choixCase();
@@ -173,11 +171,14 @@ public class Jeu implements Regles {
             ramasser(casePrecedente[0],casePrecedente[1], joueurActif);
     }
 
+    /* peut-être la convertir en coupPossible
     private boolean checkSiCasePrenable(int numeroJoueur, int numeroTrou){
         if(plateau.getGraineDansTrou(numeroJoueur,numeroTrou) >= 2 && plateau.getGraineDansTrou(numeroJoueur,numeroTrou) <=3)
             return true;
         else return false;
     }
+
+     */
 
     private boolean checkCaseSuivante(int numeroJoueur, int numeroTrou){
         int[]graineCaseSuivante = caseSuivante(numeroJoueur, numeroTrou);
