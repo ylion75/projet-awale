@@ -142,7 +142,7 @@ public class Jeu implements Regles {
             numeroTrou --;
         return new int[]{numeroJoueur, numeroTrou};
     }
-    
+
     private int[] casePrecedente(int numeroJoueur, int numeroTrou){
         //on change de joueur en arrivant au bout de plateau
         if((numeroTrou == plateau.getPlateau()[numeroJoueur].length - 1 && numeroJoueur == 1)
