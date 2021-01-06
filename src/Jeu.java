@@ -38,20 +38,31 @@ public class Jeu implements Regles {
         else return J2;
     }
 
-    /* Brouillon saisie Simon
-              int choix;
-        try ( Scanner choixS = new Scanner(System.in)) {
-            System.out.println("ChoixS");
-            choix = choixS.nextInt();
-            System.out.println(choix);
+    public int choixDuJoueur(Joueur joueurActif) {
+        int caseTape;
+        try (Scanner choixS = new Scanner(System.in)) {
+            System.out.println("Choissiez une case de votre ligne : " + joueurActif.getNom());
+            caseTape = choixS.nextInt();
+            while (caseTape < 1 || caseTape >= 13) {
+                System.out.println("Et aussi dans le jeu");
+                caseTape = choixS.nextInt();
+            }
+            if (joueurActif == J1) {
+                while (caseTape > 7 || caseTape < 0 && isTrouVide(J1.getNumero(), caseTape) == true)  {
+                    System.out.println("on a dit dans ta ligne et une case avec des graines ! (ligne " + joueurActif.getNom() + ")");
+                    caseTape = choixS.nextInt();
+                }
+            }
+            else if (joueurActif == J2) {
+                while (caseTape < 7 || caseTape > 13 && isTrouVide(J2.getNumero(), caseTape) == true) {
+                    System.out.println("on a dit dans ta ligne !(ligne " + joueurActif.getNom() + ")");
+                    caseTape = choixS.nextInt();
+                }
+            }
+            return caseTape;
         }
+    }
 
-        //controle a faire : si la case n'est pas possible, lui redemander
-        //lorsqu'il y a 0 graine ou que la case ne lui appartient pas
-
-
-
-     */
     @Override
     public void jouerUnCoup(Joueur joueurActif, int choixUtilisateur){
         int indiceCase = choixCase(choixUtilisateur);
