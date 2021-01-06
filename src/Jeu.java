@@ -38,32 +38,39 @@ public class Jeu implements Regles {
         else return J2;
     }
 
-    @Override
-    public void jouerUnCoup(Joueur joueurActif) {
-
-        //Décomposition en 3 sous méthodes (private)
-        //choixCase();
-        int choix;
+    /* Brouillon saisie Simon
+              int choix;
         try ( Scanner choixS = new Scanner(System.in)) {
             System.out.println("ChoixS");
             choix = choixS.nextInt();
             System.out.println(choix);
         }
+
+        //controle a faire : si la case n'est pas possible, lui redemander
+        //lorsqu'il y a 0 graine ou que la case ne lui appartient pas
+
+
+
+     */
+    @Override
+    public void jouerUnCoup(Joueur joueurActif, int numeroJoueur, int numeroTrou){
+        //Décomposition en 3 sous méthodes (private)
+        //choixCase();
         //choixCase(choix);
         //semer();
-
-
-
-            //controle a faire : si la case n'est pas possible, lui redemander
-            //lorsqu'il y a 0 graine ou que la case ne lui appartient pas
-        //semer();
-            //reinitialise la case choisie à 0 et renvoie int[] avec emplacement de la dernière case
+            ///reinitialise la case choisie à 0 et renvoie int[] avec emplacement de la dernière case
         //ramasser();
             //regarde la dernière case
             //checker si elle contient 2 ou 3 graines
-                //si c'est le cas, on regarde la case précédente -> on ramasse while c'est de du côté adverse et qu'il y a
-                // 2 ou 3 graines
+
+
     }
+    //on ramasse quand la case à 2 ou 3 graines
+    //on vide la case et on rajoute au score du joueur
+    //si on ramasse, on check la case précedente
+    //si celle ci a 2 ou 3 graines, on ramasse
+    //si on ramasse pas, on s'arrête là
+
 
     //methode repassé en public pour les tests unitaires
     public int choixCase(int choixUtilisateur){
@@ -88,10 +95,7 @@ public class Jeu implements Regles {
      *
      * @param numeroJoueur
      * @param numeroTrou
-     * @return
-     * Attention, on met
-     * Egalement a repasser en public
-     * On travaille avec les indices du tableau
+     * @return reinitialise la case choisie à 0 et renvoie int[] avec emplacement de la dernière case
      */
     public int[] semer(int numeroJoueur, int numeroTrou){
         int nbGraine = plateau.getGraineDansTrou(numeroJoueur, numeroTrou);
@@ -103,6 +107,7 @@ public class Jeu implements Regles {
             numeroTrou = caseSuivante[1];
             plateau.ajouteUneGraine(numeroJoueur,numeroTrou);
         }
+        //coordonnées case sur laquelle on s'arrête de semer
         return new int[]{numeroJoueur, numeroTrou};
     }
 
@@ -119,8 +124,14 @@ public class Jeu implements Regles {
         return new int[]{numeroJoueur, numeroTrou};
     }
 
+    /**
+     *
+     * @param numeroJoueur
+     * @param numeroTrou
+     * @return
+     */
     private boolean checkCaseSuivante(int numeroJoueur, int numeroTrou){
-        int[]graineCaseSuivante = casePrecedente(numeroJoueur, numeroTrou);
+        int[]graineCaseSuivante = caseSuivante(numeroJoueur, numeroTrou);
         if(plateau.getGraineDansTrou(graineCaseSuivante[0], graineCaseSuivante[1])>= 2 || plateau.getGraineDansTrou(graineCaseSuivante[0], graineCaseSuivante[1])<= 3)
             return true;
         else return false;
@@ -168,23 +179,6 @@ public class Jeu implements Regles {
         }
     }
 
-
-    /*
-      while(checkCasePrecedente(numeroJoueur,numeroTrou))
-
-
-        //condition qu'on a oublié.
-        Quand joueurActif = J1 => il joue en face et vice versa;
-
-    //on ramasse quand la case à 2 ou 3 graines
-        //on vide la case et on rajoute au score du joueur
-    //si on ramasse, on check la case précedente
-        //si celle ci a 2 ou 3 graines, on ramasse
-    //si on ramasse pas, on s'arrête là
-
-     */
-
-
     public boolean isTrouVide(int numeroJoueur, int numeroTrou){
         if(plateau.getGraineDansTrou(numeroJoueur,numeroTrou) == 0)
             return true;
@@ -213,7 +207,7 @@ public class Jeu implements Regles {
 
 
 
-
+        /*
         //test Simon
         awale.plateau.setGraineDansTrou(0,0,3);
         awale.plateau.setGraineDansTrou(0,1,3);
@@ -221,8 +215,7 @@ public class Jeu implements Regles {
 
 
 
-
-/*  Test ramasser case  suivante
+        //Test ramasser case  suivante
         awale.ramasser(0,2, awale.J1);
         awale.ramasserCasePrecedente(0,2, awale.J1);
         awale.plateau.afficherPlateau();
@@ -232,11 +225,11 @@ public class Jeu implements Regles {
         awale.ramasser(0,2, awale.J1);
         awale.ramasserCaseSuivante(0,2, awale.J1);
         awale.plateau.afficherPlateau();
-*/
 
 
-        /*
-        Jeu de test à l'arrache pour ramasser
+
+
+        //Jeu de test à l'arrache pour ramasser
         System.out.println(awale.plateau.getGraineDansTrou(1,1));
         awale.plateau.setGraineDansTrou(0,1,3);
         awale.plateau.afficherPlateau();
@@ -247,6 +240,8 @@ public class Jeu implements Regles {
         System.out.println(scoreTest);
 
          */
+
+
 
 
 
