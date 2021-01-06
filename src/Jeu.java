@@ -83,30 +83,8 @@ public class Jeu implements Regles {
                 ramasserCasePrecedente(0, indiceCase, joueurActif);
                 ramasserCaseSuivante(0, indiceCase, joueurActif);
         }
-        //Décomposition en 3 sous méthodes (private)
-        //choixCase();
-        //choixCase(choix);
-        //semer();
-            ///reinitialise la case choisie à 0 et renvoie int[] avec emplacement de la dernière case
-        //ramasser();
-            //regarde la dernière case
-            //checker si elle contient 2 ou 3 graines
-
 
     }
-    //on ramasse quand la case à 2 ou 3 graines
-    //on vide la case et on rajoute au score du joueur
-    //si on ramasse, on check la case précedente
-    //si celle ci a 2 ou 3 graines, on ramasse
-    //si on ramasse pas, on s'arrête là
-    /*
-    public int[] coordonneeCaseJouee(int, Joueur joueurActif){
-        if(joueurActif == J1){
-            return new int[]{0, caseChoisie};
-        }
-    }
-
-     */
 
     /**
      *
@@ -142,7 +120,7 @@ public class Jeu implements Regles {
         //vide le trou choisi par l'utilisateur
         plateau.viderLeTrou(numeroJoueur, numeroTrou);
         for(int i = nbGraine; i > 0; i--){
-            int[] caseSuivante = caseSuivante(numeroJoueur, numeroTrou);
+            int[] caseSuivante = plateau.caseSuivante(numeroJoueur, numeroTrou);
             numeroJoueur = caseSuivante[0];
             numeroTrou = caseSuivante[1];
             plateau.ajouteUneGraine(numeroJoueur,numeroTrou);
@@ -160,13 +138,13 @@ public class Jeu implements Regles {
     }
 
     public void ramasserCaseSuivante(int numeroJoueur, int numeroTrou, Joueur joueurActif){
-        int[] caseSuivante = caseSuivante(numeroJoueur, numeroTrou);
+        int[] caseSuivante = plateau.caseSuivante(numeroJoueur, numeroTrou);
         if(checkCaseSuivante(numeroJoueur, numeroTrou))
             ramasser(caseSuivante[0],caseSuivante[1], joueurActif);
     }
 
     public void ramasserCasePrecedente(int numeroJoueur, int numeroTrou, Joueur joueurActif){
-        int[] casePrecedente = casePrecedente(numeroJoueur, numeroTrou);
+        int[] casePrecedente = plateau.casePrecedente(numeroJoueur, numeroTrou);
         if(checkCasePrecedente(numeroJoueur, numeroTrou))
             ramasser(casePrecedente[0],casePrecedente[1], joueurActif);
     }
@@ -181,43 +159,17 @@ public class Jeu implements Regles {
      */
 
     private boolean checkCaseSuivante(int numeroJoueur, int numeroTrou){
-        int[]graineCaseSuivante = caseSuivante(numeroJoueur, numeroTrou);
+        int[]graineCaseSuivante = plateau.caseSuivante(numeroJoueur, numeroTrou);
         if(plateau.getGraineDansTrou(graineCaseSuivante[0], graineCaseSuivante[1])>= 2 && plateau.getGraineDansTrou(graineCaseSuivante[0], graineCaseSuivante[1])<= 3)
             return true;
         else return false;
     }
 
     private boolean checkCasePrecedente(int numeroJoueur, int numeroTrou){
-        int[]graineCasePrecedente = casePrecedente(numeroJoueur, numeroTrou);
+        int[]graineCasePrecedente = plateau.casePrecedente(numeroJoueur, numeroTrou);
         if(plateau.getGraineDansTrou(graineCasePrecedente[0], graineCasePrecedente[1])>= 2 && plateau.getGraineDansTrou(graineCasePrecedente[0], graineCasePrecedente[1])<= 3)
             return true;
         else return false;
-    }
-
-    private int[] caseSuivante(int numeroJoueur, int numeroTrou){
-        //on change de joueur en arrivant au bout de plateau
-        if((numeroTrou == plateau.getPlateau()[numeroJoueur].length - 1 && numeroJoueur == 0)
-                ||(numeroTrou == 0 && numeroJoueur == 1)){
-            numeroJoueur = (numeroJoueur +1) %2;
-        }
-        else if(numeroJoueur == 0)
-            numeroTrou++;
-        else if(numeroJoueur == 1)
-            numeroTrou --;
-        return new int[]{numeroJoueur, numeroTrou};
-    }
-
-    private int[] casePrecedente(int numeroJoueur, int numeroTrou){
-        //on change de joueur en arrivant au bout de plateau
-        if((numeroTrou == plateau.getPlateau()[numeroJoueur].length - 1 && numeroJoueur == 1)
-                ||(numeroTrou == 0 && numeroJoueur == 0)){
-            numeroJoueur = (numeroJoueur +1) %2;
-        }
-        else if(numeroJoueur == 1)
-            numeroTrou++;
-        else if(numeroJoueur == 0)
-            numeroTrou--;
-        return new int[]{numeroJoueur, numeroTrou};
     }
 
     public boolean isTrouVide(int numeroJoueur, int numeroTrou){

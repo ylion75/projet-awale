@@ -42,6 +42,32 @@ public class PlateauJeu {
         this.graineParTrou = graineParTrou;
     }
 
+    public int[] caseSuivante(int numeroJoueur, int numeroTrou){
+        //on change de joueur en arrivant au bout de plateau
+        if((numeroTrou == getPlateau()[numeroJoueur].length - 1 && numeroJoueur == 0)
+                ||(numeroTrou == 0 && numeroJoueur == 1)){
+            numeroJoueur = (numeroJoueur +1) %2;
+        }
+        else if(numeroJoueur == 0)
+            numeroTrou++;
+        else if(numeroJoueur == 1)
+            numeroTrou --;
+        return new int[]{numeroJoueur, numeroTrou};
+    }
+
+    public int[] casePrecedente(int numeroJoueur, int numeroTrou){
+        //on change de joueur en arrivant au bout de plateau
+        if((numeroTrou == getPlateau()[numeroJoueur].length - 1 && numeroJoueur == 1)
+                ||(numeroTrou == 0 && numeroJoueur == 0)){
+            numeroJoueur = (numeroJoueur +1) %2;
+        }
+        else if(numeroJoueur == 1)
+            numeroTrou++;
+        else if(numeroJoueur == 0)
+            numeroTrou--;
+        return new int[]{numeroJoueur, numeroTrou};
+    }
+
     public void afficherPlateau() {
         int cpt = 0;
         System.out.print("NORD");
