@@ -20,8 +20,8 @@ public class Appli extends Jeu {
         awale.ramasserCaseSuivante(1,2, awale.J1);
         awale.plateau.afficherPlateau();
 
-        //int test = awale.choixDuJoueur(awale.J1);
-        /System.out.println(test);
+        int test = awale.choixDuJoueur(awale.J1);
+        System.out.println(test);
 
 
 

@@ -10,12 +10,6 @@
         this.score = 0;
     }
 
-    public Joueur joueurSuivant(Joueur joueurActuel) {
-        if (joueurActuel == J1) {
-            return J1;
-        } else return J2;
-    }
-
     public String getNom() {
         return nom;
     }

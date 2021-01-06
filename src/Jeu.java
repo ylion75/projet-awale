@@ -27,56 +27,27 @@ public class Jeu implements Regles {
         return J1;
     }
 
-    public boolean getFinDePartie() {
-        return finDepartie;
-    }
-
-    /*
-    public int choixDuJoueur(Joueur joueurActif) {
-        int caseTape;
+    public int caseSaisie(Joueur joueurActif){
+        int caseSaisie;
         try (Scanner choixS = new Scanner(System.in)) {
             System.out.println("Choissiez une case de votre ligne : " + joueurActif.getNom());
-            caseTape = choixS.nextInt();
-            while (caseTape < 1 || caseTape >= 13) {
-                System.out.println("Et aussi dans le jeu");
-                caseTape = choixS.nextInt();
-            }
-            //la on va check au sud
-            if (isTrouVide(joueurActif.getnumero(), caseTape) == true) {
-                System.out.println("Une case avec des graines !");
-                caseTape = choixS.nextInt();
-            }
-
-            if (joueurActif == J1) {
-                while (isTrouVide(J1.getNumero(), caseTape) == true) {
-                    System.out.println("Une case pleine !");
-                    caseTape = choixS.nextInt();
-
-
-                    while (caseTape > 7 || caseTape < 0) {
-                        System.out.println("on a dit dans ta ligne et une case avec des graines ! (ligne " + joueurActif.getNom() + ")");
-                        caseTape = choixS.nextInt();
-                    }
-
-                } /*else if (joueurActif == J2) {
-                while (isTrouVide(J1.getNumero(), caseTape) == true) {
-                    System.out.println("Une case pleine !");
-                    caseTape = choixS.nextInt();
-
-
-
-                    while (isTrouVide(J2.getNumero(), caseTape) == true && caseTape < 7 || caseTape > 13) {
-                        System.out.println("on a dit dans ta ligne !(ligne " + joueurActif.getNom() + ")");
-                        caseTape = choixS.nextInt();
-                    }
-                }
-                return caseTape;
-            }
+            caseSaisie = choixS.nextInt();
         }
+        Scanner coupSaisie = new Scanner(System.in);
+        return caseSaisie;
     }
-    */
 
-
+    public boolean coupPossible(Joueur joueurActif, int caseSaisie){
+        if(caseSaisie < 0 || caseSaisie > 12)
+            return false;
+        else if(joueurActif == J1 && caseSaisie > 7){
+            return false;
+            }
+        else if(joueurActif == J2 && caseSaisie > 12){
+            return false;
+        }
+        else return true;
+    }
 
     @Override
     public void jouerUnCoup(Joueur joueurActif, int choixUtilisateur){
@@ -198,8 +169,18 @@ public class Jeu implements Regles {
         return false;
     }
 
+    public boolean getFinDePartie() {
+        return finDepartie;
+    }
+
     public Joueur[] getJoueurs() {
         return new Joueur[]{J1, J2};
+    }
+
+    public Joueur joueurSuivant(Joueur joueurActuel) {
+        if (joueurActuel == J1) {
+            return J1;
+        } else return J2;
     }
 
 

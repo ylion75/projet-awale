@@ -23,6 +23,8 @@ public class JeuTest {
         int choixCaseTest = awale.choixCase(11);
         int choixCaseTest2 = awale.choixCase(6);
         int choixCaseTestFinPartie = awale.choixCase(0);
+        //vérifie que choixCase() renvoie au bon indice selon la saisie de l'utilisateur
+        //et que le booleen finDePartie passe true lorsqu'il saisit 0
         assertEquals(choixCaseTest, 1);
         assertEquals(choixCaseTest2, 5);
         assertEquals(choixCaseTestFinPartie, -1);
