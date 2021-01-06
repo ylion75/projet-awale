@@ -26,7 +26,7 @@
         return score;
         }
 
-        public void ajouterScore(int score){
+    public void ajouterScore(int score){
         setScore(this.score + score);
     }
 }

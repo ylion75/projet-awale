@@ -5,16 +5,19 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class JeuTest {
-    private Jeu awale;
-    private Joueur J1;
+    /*
+    //private Jeu awale;
 
     //initialisation hors des jeux de tests parce que le numéro de Joueur est déclaré static
     public JeuTest() {
         this.awale = new Jeu();
     }
 
+     */
+
     @Test
     public void initialisationJeu() {
+        Jeu awale = new Jeu();
         Joueur[] tabjoueur = awale.getJoueurs();
         assertEquals(tabjoueur[0].getNumero(), 0);
         assertEquals(tabjoueur[1].getNumero(), 1);
@@ -26,6 +29,7 @@ public class JeuTest {
 
     @Test
     public void choixCaseTest() {
+        Jeu awale = new Jeu();
         int choixCaseTest = awale.choixCase(11);
         int choixCaseTest2 = awale.choixCase(6);
         int choixCaseTestFinPartie = awale.choixCase(0);
@@ -37,6 +41,7 @@ public class JeuTest {
 
     @Test
     public void semerTest() {
+        Jeu awale = new Jeu();
         int[] semerTest = awale.semer(0, 3);
         //a changé de camp donc normalement camp d'en face
         assertEquals(semerTest[0], 1);
@@ -52,7 +57,10 @@ public class JeuTest {
 
     @Test
     public void ramasserTest() {
-        awale.ramasser(0, 1, J1);
+        Jeu awale = new Jeu();
+        awale.getJoueurs();
+
+        //awale.ramasser(0, 1,awale.J1);
 
 
         //PlateauJeu.awale.setGraineDansTrou(0,1,3);
