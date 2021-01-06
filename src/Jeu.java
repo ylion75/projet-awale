@@ -27,7 +27,7 @@ public class Jeu implements Regles {
         return J1;
     }
 
-    public int caseSaisie(Joueur joueurActif){
+    public int demanderCase(Joueur joueurActif){
         int caseSaisie;
         try (Scanner choixS = new Scanner(System.in)) {
             System.out.println("Choissiez une case de votre ligne : " + joueurActif.getNom());
@@ -36,6 +36,7 @@ public class Jeu implements Regles {
         Scanner coupSaisie = new Scanner(System.in);
         return caseSaisie;
     }
+
 
     public boolean coupPossible(Joueur joueurActif, int caseSaisie){
         if(caseSaisie < 0 || caseSaisie > 12)
@@ -50,24 +51,26 @@ public class Jeu implements Regles {
     }
 
     @Override
-    public void jouerUnCoup(Joueur joueurActif, int choixUtilisateur){
-        int indiceCase = choixCase(choixUtilisateur);
+    public void jouerUnCoup(Joueur joueurActif, int choixValide){
+        //a vérifier demain
+        //int indiceCase = choixCase(choixUtilisateur);
+        //rappel : on a déjà l'indice avant
 
         if(joueurActif == J1){
-            ramasser(J1.getNumero(),indiceCase,joueurActif);
+            ramasser(J1.getNumero(),choixValide,joueurActif);
                 //check que la rangée adverse n'est pas vide
                 //attention il manque peut être une condition, peut être qu'il va boucler sur tout le plateau même en face
                 while(plateau.nbGrainerangee(J2.getNumero()) > 0){
-                    ramasserCasePrecedente(0,indiceCase, joueurActif);
-                    ramasserCaseSuivante(0,indiceCase, joueurActif);
+                    ramasserCasePrecedente(0,choixValide, joueurActif);
+                    ramasserCaseSuivante(0,choixValide, joueurActif);
                 }
         }
         else if(joueurActif == J2){
-            ramasser(1,indiceCase,joueurActif);
+            ramasser(1,choixValide,joueurActif);
                 //check rangée opposée
                 while(plateau.nbGrainerangee(0)> 0);
-                ramasserCasePrecedente(0, indiceCase, joueurActif);
-                ramasserCaseSuivante(0, indiceCase, joueurActif);
+                ramasserCasePrecedente(0, choixValide, joueurActif);
+                ramasserCaseSuivante(0, choixValide, joueurActif);
         }
 
     }
@@ -80,7 +83,6 @@ public class Jeu implements Regles {
     public int choixCase(int choixUtilisateur){
         int caseChoisie = 0;
         assert(choixUtilisateur >= 0 && choixUtilisateur <= 12);
-        //if(!isTrouVide)
         if(choixUtilisateur > 0 && choixUtilisateur < 7){
             caseChoisie = choixUtilisateur - 1;
         }

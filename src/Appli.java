@@ -6,6 +6,21 @@ public class Appli extends Jeu {
         Jeu awale = new Jeu();
         awale.plateau.afficherPlateau();
 
+        int saisiePremierCoup = awale.demanderCase(awale.premierJoueur());
+        if(awale.coupPossible(awale.premierJoueur(), saisiePremierCoup)){
+            awale.jouerUnCoup(awale.premierJoueur(),saisiePremierCoup);
+        }
+        else if(!awale.coupPossible(awale.premierJoueur(), saisiePremierCoup)){
+            System.out.println("Rejouez un coup");
+            awale.demanderCase(awale.premierJoueur());
+        }
+
+        //scan saisie premier joueur
+        //
+
+
+        /*
+
         awale.ramasser(0,2, awale.J1);
         awale.ramasserCasePrecedente(0,2, awale.J1);
         awale.plateau.afficherPlateau();
