@@ -117,8 +117,6 @@ public class Jeu implements Regles {
         else if(numeroJoueur == 1)
             numeroTrou --;
         return new int[]{numeroJoueur, numeroTrou};
-
-
     }
 
     private boolean checkCaseSuivante(int numeroJoueur, int numeroTrou){

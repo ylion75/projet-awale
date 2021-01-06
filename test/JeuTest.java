@@ -1,4 +1,4 @@
-/*import org.junit.Test;
+import org.junit.Test;
 import org.junit.experimental.theories.suppliers.TestedOn;
 
 import static org.junit.Assert.assertEquals;
@@ -6,6 +6,7 @@ import static org.junit.Assert.assertFalse;
 
 public class JeuTest {
     private Jeu awale;
+    private Joueur J1;
 
     //initialisation hors des jeux de tests parce que le numéro de Joueur est déclaré static
     public JeuTest() {
@@ -35,36 +36,35 @@ public class JeuTest {
     }
 
     @Test
-    public void semerTest(){
+    public void semerTest() {
         int[] semerTest = awale.semer(0, 3);
         //a changé de camp donc normalement camp d'en face
-        assertEquals(semerTest[0],1);
-        assertEquals(semerTest[1],4);
+        assertEquals(semerTest[0], 1);
+        assertEquals(semerTest[1], 4);
 
         int[] semerTest2 = awale.semer(1, 2);
         //a changé de camp donc normalement camp d'en face
-        assertEquals(semerTest2[0],0);
-        assertEquals(semerTest2[1],1);
+        assertEquals(semerTest2[0], 0);
+        assertEquals(semerTest2[1], 1);
 
     }
 
-    /*
+
     @Test
-    public void ramasserTest(){
-        awale.ramasser(0,1, J1);
+    public void ramasserTest() {
+        awale.ramasser(0, 1, J1);
 
 
         //PlateauJeu.awale.setGraineDansTrou(0,1,3);
 
-        awale.ramasser(0,1);
+        //awale.ramasser(0,1);
         //assertEquals(plateau.getGraineDansTrou(0,1),3);
 
 
-
-
     }
+}
 
-     */
+
 
 
 
