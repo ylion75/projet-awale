@@ -69,7 +69,8 @@ public class Jeu implements Regles {
         else if(joueurActif == J2){
             if(checkSiCasePrenable(1,indiceCase))
                 ramasser(1,indiceCase,joueurActif);
-                    while(plateau.nbGrainerangee(1,indiceCase,joueurActif) > 0);
+                    //check rangée opposée
+                    while(plateau.nbGrainerangee(0)> 0);
                     ramasserCasePrecedente(0, indiceCase, joueurActif);
                     ramasserCaseSuivante(0, indiceCase, joueurActif);
         }
