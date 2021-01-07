@@ -75,11 +75,72 @@ public class Jeu implements Regles {
 
     }
 
-    /**
-     *
+    public int convertisseurLigne (int choixUtilisateur, Joueur joueurActif){
+        int caseConvertie = 0;
+        assert(choixUtilisateur >= 0 && choixUtilisateur <= 12);
+        //if(!isTrouVide)
+        if(joueurActif == J1) {
+            if (choixUtilisateur > 6) {
+                caseConvertie = (choixUtilisateur - 12) * (-1);
+            } else if (choixUtilisateur < 6) {
+                caseConvertie = choixUtilisateur - 1;
+            }
+        }
+        else if(joueurActif == J2) {
+            if (choixUtilisateur > 6) {
+                caseConvertie = (choixUtilisateur - 12) * (-1);
+            }
+            else if (choixUtilisateur < 6) {
+                caseConvertie = choixUtilisateur - 1;
+            }
+        }
+        else if(choixUtilisateur == 0){
+            finDepartie = true;
+            return -1;
+        }
+        return caseConvertie;
+    }
+
+    public int choixDuJoueur(Joueur joueurActif) {
+        int caseTape;
+        try (Scanner choixS = new Scanner(System.in);) {
+            System.out.println("Choissiez une case de votre ligne : " + joueurActif.getNom());
+            caseTape = choixS.nextInt();
+            while (caseTape < 1 || caseTape >= 13) {
+                System.out.println("Et aussi dans le jeu");
+                caseTape = choixS.nextInt();
+            }
+            if (joueurActif == J1) {
+                while (isTrouVide(J2.getNumero(), convertisseurLigne(caseTape, J1))) {
+                    System.out.println("Une case avec des graines  !");
+                    caseTape = choixS.nextInt();
+                }
+                while (caseTape > 6 || caseTape < 0) {
+                    System.out.println("on a dit dans ta ligne ! (ligne " + joueurActif.getNom() + ")");
+                    caseTape = choixS.nextInt();
+                }
+            }
+
+            else if (joueurActif == J2) {
+                while (isTrouVide(J1.getNumero(), convertisseurLigne(caseTape, J2)) == true) {
+                    System.out.println("Une case avec des graines !");
+                    caseTape = choixS.nextInt();
+                }
+                while (caseTape < 7 || caseTape > 13) {
+                    System.out.println("on a dit dans ta ligne !(ligne " + joueurActif.getNom() + ")");
+                    caseTape = choixS.nextInt();
+                }
+            }
+        }
+        return caseTape;
+    }
+    //ancienne version
+
+     /*
      * @param choixUtilisateur
      * @return prend le choix de l'utilisateur et renvoie en indice du tableau
-     */
+      */
+
     public int choixCase(int choixUtilisateur){
         int caseChoisie = 0;
         assert(choixUtilisateur >= 0 && choixUtilisateur <= 12);
@@ -95,6 +156,7 @@ public class Jeu implements Regles {
         }
         return caseChoisie;
     }
+
 
     /**
      * Reinitialise la case choisie à 0 et séme les cases suivantes selon le nombre de graine de la case

@@ -149,6 +149,7 @@ public class PlateauJeu {
 
     //fonction pour test unitaire
     public void setGraineDansTrou(int numeroJoueur, int numeroTrou, int nbGraine){
+        assert (numeroJoueur >= 0 && numeroJoueur <= 1 && numeroTrou >= 0 && numeroTrou <= 5);
         plateau[numeroJoueur][numeroTrou] = nbGraine;
     }
 }
