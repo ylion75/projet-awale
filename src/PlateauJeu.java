@@ -23,6 +23,7 @@ public class PlateauJeu {
         }
     }
 
+
     //version avec constructeur vide charge l'Awale de base.
     //le code est dupliqué y'a peut être moyen de faire qqchose pour enlever un des deux
     public PlateauJeu() {

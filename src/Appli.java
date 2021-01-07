@@ -13,13 +13,14 @@ public class Appli extends Jeu {
 
             if(joueurActif == awale.J1){
                 int choixJ1 = awale.choisitUneCase(awale.J1);
-                awale.jouerUnCoup(awale.J1, choixJ1);
-                awale.joueurSuivant(awale.J1);
+
+                //awale.jouerUnCoup(awale.J1, choixJ1);
+                //awale.joueurSuivant(awale.J1);
                 joueurActif = awale.joueurSuivant(awale.J1);
             }
             else if(joueurActif == awale.J2){
                 int choixJ2 = awale.choisitUneCase(awale.J2);
-                awale.jouerUnCoup(awale.J2, choixJ2);
+                //awale.jouerUnCoup(awale.J2, choixJ2);
                 awale.joueurSuivant(awale.J2);
                 joueurActif = awale.joueurSuivant(awale.J2);
             }
