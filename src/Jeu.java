@@ -75,32 +75,6 @@ public class Jeu implements Regles {
 
     }
 
-    public int convertisseurLigne (int choixUtilisateur, Joueur joueurActif){
-        int caseConvertie = 0;
-        assert(choixUtilisateur >= 0 && choixUtilisateur <= 12);
-        //if(!isTrouVide)
-        if(joueurActif == J1) {
-            if (choixUtilisateur > 6) {
-                caseConvertie = (choixUtilisateur - 12) * (-1);
-            } else if (choixUtilisateur < 6) {
-                caseConvertie = choixUtilisateur - 1;
-            }
-        }
-        else if(joueurActif == J2) {
-            if (choixUtilisateur > 6) {
-                caseConvertie = (choixUtilisateur - 12) * (-1);
-            }
-            else if (choixUtilisateur < 6) {
-                caseConvertie = choixUtilisateur - 1;
-            }
-        }
-        else if(choixUtilisateur == 0){
-            finDepartie = true;
-            return -1;
-        }
-        return caseConvertie;
-    }
-
     public int choixDuJoueur(Joueur joueurActif) {
         int caseTape;
         try (Scanner choixS = new Scanner(System.in);) {
@@ -133,6 +107,32 @@ public class Jeu implements Regles {
             }
         }
         return caseTape;
+    }
+
+    public int convertisseurLigne (int choixUtilisateur, Joueur joueurActif){
+        int caseConvertie = 0;
+        assert(choixUtilisateur >= 0 && choixUtilisateur <= 12);
+        //if(!isTrouVide)
+        if(joueurActif == J1) {
+            if (choixUtilisateur > 6) {
+                caseConvertie = (choixUtilisateur - 12) * (-1);
+            } else if (choixUtilisateur < 6) {
+                caseConvertie = choixUtilisateur - 1;
+            }
+        }
+        else if(joueurActif == J2) {
+            if (choixUtilisateur > 6) {
+                caseConvertie = (choixUtilisateur - 12) * (-1);
+            }
+            else if (choixUtilisateur < 6) {
+                caseConvertie = choixUtilisateur - 1;
+            }
+        }
+        else if(choixUtilisateur == 0){
+            finDepartie = true;
+            return -1;
+        }
+        return caseConvertie;
     }
     //ancienne version
 

@@ -2,6 +2,10 @@ import java.util.Scanner;
 
 public class Appli extends Jeu {
 
+    public void deroulementPartie(){
+
+    }
+
     public static void main(String[] args) {
         Jeu awale = new Jeu();
         awale.plateau.afficherPlateau();
