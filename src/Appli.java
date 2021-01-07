@@ -1,40 +1,51 @@
-import java.util.Scanner;
-
 public class Appli extends Jeu {
+    private static Jeu awale;
 
-    public static void main(String[] args) {
-        Jeu awale = new Jeu();
-        Joueur joueurActif = awale.premierJoueur();
-        awale.plateau.afficherPlateau();
-        //System.out.println("A " + awale.premierJoueur().getNom() + " de jouer");
-
-        while(!awale.finDePartie()){
-            awale.plateau.afficherPlateau();
-
-            if(joueurActif == awale.J1){
-                int choixJ1 = awale.choisitUneCase(awale.J1);
-
-                //awale.jouerUnCoup(awale.J1, choixJ1);
-                //awale.joueurSuivant(awale.J1);
-                joueurActif = awale.joueurSuivant(awale.J1);
-            }
-            else if(joueurActif == awale.J2){
-                int choixJ2 = awale.choisitUneCase(awale.J2);
-                //awale.jouerUnCoup(awale.J2, choixJ2);
-                awale.joueurSuivant(awale.J2);
-                joueurActif = awale.joueurSuivant(awale.J2);
-            }
-
+    /*
+    public void joue(Joueur joueurActif){
+        if(joueurActif == J1){
+            awale.jouerUnCoup(joueurActif,;
 
         }
+        else if(joueurActif == J2){
+
+        }
+    }
+
+     */
 
 
-        //déroulement d'une partie
-        //on demande à J1 de saisir une case
-        //jouerUnCoup(J1,case)
+    public static void main(String[] args) {
+        awale = new Jeu();
+        //joueurActif = new Joueur();
+        awale.plateau.afficherPlateau();
+        /*
+        while(!awale.finDePartie()){
+            awale.jouerUnCoup(awale.J1, awale.demanderCase(awale.J1));
+            awale.plateau.afficherPlateau();
+        }
 
-        //while(!finDePartie){
-        // ca joue}
+         */
+        /*
+        if (joueurActif == awale.J1) {
+            int choixJ1 = awale.choisitUneCase(awale.J1);
+            awale.semer(0, choixJ1);
+            awale.jouerUnCoup(awale.J1, choixJ1);
+            awale.joueurSuivant(awale.J1);
+            joueurActif = awale.joueurSuivant(awale.J1);
+        } else if (joueurActif == awale.J2) {
+            int choixJ2 = awale.choisitUneCase(awale.J2);
+            awale.jouerUnCoup(awale.J2, choixJ2);
+            awale.joueurSuivant(awale.J2);
+            joueurActif = awale.joueurSuivant(awale.J2);
+        }
+        
+         */
+
+        //
+        //
+        // joueurActif = awale.joueurSuivant(awale.J1);
+
 
 
     }

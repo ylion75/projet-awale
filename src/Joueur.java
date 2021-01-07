@@ -1,7 +1,7 @@
     public class Joueur {
     private String nom;
     private int numero;
-    private int cpt = 0; //compteur static pour attribuer un numéro au joueur
+    private static int cpt = 0; //compteur static pour attribuer un numéro au joueur
     private int score;
 
     public Joueur(String nom){
@@ -17,6 +17,8 @@
     public int getNumero() {
         return numero;
     }
+
+    //public void setNumero(int setNumeroJoueur) {Joueur.numero = setNumeroJoueur}
 
     public void setScore(int score) {
         this.score = score;

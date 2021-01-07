@@ -27,35 +27,30 @@ public class Jeu implements Regles {
     }
 
     public int demanderCase(Joueur joueurActif){
-        int caseSaisie;
-        try (Scanner choixS = new Scanner(System.in)) {
-            System.out.println("Choissiez une case de votre ligne : " + joueurActif.getNom());
-            caseSaisie = choixS.nextInt();
-        }
-        Scanner coupSaisie = new Scanner(System.in);
-        return caseSaisie;
+        int saisieUtilisateur = 0;
+        Scanner sc = new Scanner(System.in);
+        saisieUtilisateur = sc.nextInt();
+        int saisieTraitee = convertisseurLigne(saisieUtilisateur, joueurActif);
+        return saisieTraitee;
     }
-
 
     public boolean coupPossible(Joueur joueurActif, int caseSaisie){
-        if(caseSaisie < 0 || caseSaisie > 12)
-            return false;
-        else if(joueurActif == J1 && caseSaisie > 7){
-            return false;
-            }
-        else if(joueurActif == J2 && caseSaisie > 12){
-            return false;
+    if(caseSaisie < 0 || caseSaisie > 12)
+        return false;
+    else if(joueurActif == J1 && caseSaisie > 7){
+        return false;
         }
-        else return true;
+    else if(joueurActif == J2 && caseSaisie > 12){
+        return false;
     }
-
+    else return true;
+    }
 
     private boolean checkSiCasePrenable(int numeroJoueur, int numeroTrou){
         if(plateau.getGraineDansTrou(numeroJoueur,numeroTrou) >= 2 && plateau.getGraineDansTrou(numeroJoueur,numeroTrou) <=3)
             return true;
         else return false;
     }
-
 
     @Override
     public void jouerUnCoup(Joueur joueurActif, int choixValide){
@@ -93,8 +88,6 @@ public class Jeu implements Regles {
             return true;
         else return false;
     }
-
-
 
 
     public int choisitUneCase(Joueur joueurActif) {
@@ -138,7 +131,7 @@ public class Jeu implements Regles {
         if(joueurActif == J1) {
             if (choixUtilisateur > 6) {
                 caseConvertie = (choixUtilisateur - 12) * (-1);
-            } else if (choixUtilisateur < 6) {
+            } else if (choixUtilisateur <= 6) {
                 caseConvertie = choixUtilisateur - 1;
             }
         }
@@ -146,7 +139,7 @@ public class Jeu implements Regles {
             if (choixUtilisateur > 6) {
                 caseConvertie = (choixUtilisateur - 12) * (-1);
             }
-            else if (choixUtilisateur < 6) {
+            else if (choixUtilisateur <= 6) {
                 caseConvertie = choixUtilisateur - 1;
             }
         }
@@ -163,6 +156,7 @@ public class Jeu implements Regles {
      * @return prend le choix de l'utilisateur et renvoie en indice du tableau
       */
 
+    /*
     public int choixCase(int choixUtilisateur){
         int caseChoisie = 0;
         assert(choixUtilisateur >= 0 && choixUtilisateur <= 12);
@@ -178,6 +172,8 @@ public class Jeu implements Regles {
         }
         return caseChoisie;
     }
+
+     */
 
 
     /**
@@ -208,13 +204,6 @@ public class Jeu implements Regles {
             plateau.viderLeTrou(numeroJoueur, numeroTrou);
         }
     }
-
-    /*
-    public boolean ramassagePossibleCaseSuivante(int numeroJoueur, int numeroTrou, Joueur joueurActif){
-        int[] caseSuivante = plateau.case
-    }
-
-     */
 
     public void ramasserCaseSuivante(int numeroJoueur, int numeroTrou, Joueur joueurActif){
         int[] caseSuivante = plateau.caseSuivante(numeroJoueur, numeroTrou);
