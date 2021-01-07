@@ -100,8 +100,6 @@ public class PlateauJeu {
         System.out.println(); //saut de ligne
         System.out.println("Nord a " + nbGrainerangee(1) + " graine(s)" ); //reflechir à une var graineLigne
         System.out.println("Sud a " + nbGrainerangee(0) + " graine(s)");
-
-        System.out.println("Au joueur " );//+ getNom())
     }
     
     public int getGraineDansTrou(int numeroJoueur, int numeroTrou){

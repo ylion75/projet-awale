@@ -75,7 +75,7 @@ public class Jeu implements Regles {
 
     }
 
-    public int choixDuJoueur(Joueur joueurActif) {
+    public int choisitUneCase(Joueur joueurActif) {
         int caseTape;
         try (Scanner choixS = new Scanner(System.in);) {
             System.out.println("Choissiez une case de votre ligne : " + joueurActif.getNom());
@@ -246,7 +246,5 @@ public class Jeu implements Regles {
             return J1;
         } else return J2;
     }
-
-
 
 }

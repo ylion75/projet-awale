@@ -2,25 +2,44 @@ import java.util.Scanner;
 
 public class Appli extends Jeu {
 
-    public void deroulementPartie(){
-
-    }
-
     public static void main(String[] args) {
         Jeu awale = new Jeu();
+        Joueur joueurActif = awale.premierJoueur();
         awale.plateau.afficherPlateau();
+        //System.out.println("A " + awale.premierJoueur().getNom() + " de jouer");
 
-        int saisiePremierCoup = awale.demanderCase(awale.premierJoueur());
-        if(awale.coupPossible(awale.premierJoueur(), saisiePremierCoup)){
-            awale.jouerUnCoup(awale.premierJoueur(),saisiePremierCoup);
-        }
-        else if(!awale.coupPossible(awale.premierJoueur(), saisiePremierCoup)){
-            System.out.println("Rejouez un coup");
-            awale.demanderCase(awale.premierJoueur());
+        while(!awale.finDePartie()){
+            awale.plateau.afficherPlateau();
+
+            if(joueurActif == awale.J1){
+                int choixJ1 = awale.choisitUneCase(awale.J1);
+                awale.jouerUnCoup(awale.J1, choixJ1);
+                awale.joueurSuivant(awale.J1);
+                joueurActif = awale.joueurSuivant(awale.J1);
+            }
+            else if(joueurActif == awale.J2){
+                int choixJ2 = awale.choisitUneCase(awale.J2);
+                awale.jouerUnCoup(awale.J2, choixJ2);
+                awale.joueurSuivant(awale.J2);
+                joueurActif = awale.joueurSuivant(awale.J2);
+            }
+
+
         }
 
-        //scan saisie premier joueur
-        //
+
+        //déroulement d'une partie
+        //on demande à J1 de saisir une case
+        //jouerUnCoup(J1,case)
+
+        //while(!finDePartie){
+        // ca joue}
+
+
+    }
+}
+
+
 
 
         /*
@@ -82,5 +101,3 @@ public class Appli extends Jeu {
 
 
 
-    }
-}
