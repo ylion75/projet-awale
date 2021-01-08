@@ -18,8 +18,6 @@
         return numero;
     }
 
-    //public void setNumero(int setNumeroJoueur) {Joueur.numero = setNumeroJoueur}
-
     public void setScore(int score) {
         this.score = score;
     }
