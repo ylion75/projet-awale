@@ -14,16 +14,17 @@ public class Jeu implements Regles {
         this.J2 = new Joueur("NORD");
         this.plateau = new PlateauJeu(2, 6, 4);
         boolean finDePartie = false;
+        this.plateau.afficherPlateau();
     }
 
     public void run(){
         while(!this.getFinDePartie()){
-            int choixJ1 = demanderCase(J1);
+            int choixJ1 = choisitUneCase(J1);
             if(choixJ1 > -1){
-                jouerUnCoup(J1,choixJ1));
-                int choixJ2 = demanderCase(J2);
+                jouerUnCoup(J1,choixJ1);
+                int choixJ2 = choisitUneCase(J2);
                 if(choixJ2 > -1){
-                    jouerUnCoup(J2,demanderCase(J2));
+                    jouerUnCoup(J2,choixJ2);
                 }
             }
         }
@@ -39,6 +40,7 @@ public class Jeu implements Regles {
         return J1;
     }
 
+    /* TODO: a supprimer
     public int demanderCase(Joueur joueurActif){
         int saisieUtilisateur = 0;
         Scanner sc = new Scanner(System.in);
@@ -46,6 +48,8 @@ public class Jeu implements Regles {
         int saisieTraitee = convertisseurLigne(saisieUtilisateur, joueurActif);
         return saisieTraitee;
     }
+
+     */
 
     /*
     public boolean coupPossible(Joueur joueurActif, int caseSaisie){
@@ -62,22 +66,15 @@ public class Jeu implements Regles {
 
      */
 
-    private boolean checkSiCasePrenable(int numeroJoueur, int numeroTrou){
-        if(plateau.getGraineDansTrou(numeroJoueur,numeroTrou) >= 2 && plateau.getGraineDansTrou(numeroJoueur,numeroTrou) <=3)
-            return true;
-        else return false;
-    }
-
     @Override
     public void jouerUnCoup(Joueur joueurActif, int choixValide){
         //a vérifier demain
         //int indiceCase = choixCase(choixUtilisateur);
         //rappel : on a déjà l'indice avant
         int[] derniereCase= semer(joueurActif.getNumero(),choixValide);
-        while(plateau.nbGrainerangee(joueurActif.getNumero()) > 0 && checkIfCoteAdverse(joueurActif, J1.getNumero())) {
-            ramasserCasePrecedente(0,choixValide, joueurActif);
-            ramasserCaseSuivante(0,choixValide, joueurActif);
-        }
+        //while(plateau.nbGrainerangee(joueurActif.getNumero()) > 0 && checkIfCoteAdverse(joueurActif, J1.getNumero())) {
+        ramasserGraine(derniereCase[0], derniereCase[1], joueurActif);
+        plateau.afficherPlateau();
     }
 
     /**
@@ -92,12 +89,41 @@ public class Jeu implements Regles {
         else return false;
     }
 
-
     public int choisitUneCase(Joueur joueurActif) {
-        int caseTape;
+        /*
+        int saisieUtilisateur = 0;
+        Scanner sc = new Scanner(System.in);
+        saisieUtilisateur = sc.nextInt();
+        int saisieTraitee = convertisseurLigne(saisieUtilisateur, joueurActif);
+        return saisieTraitee;
+
+         */
+
+        int caseTape = -1;
+        Scanner choixS = new Scanner(System.in);
+            System.out.println("Choissiez une case de votre ligne : " + joueurActif.getNom());
+            if (caseTape == 0) {
+                this.setFinDepartie();
+            }
+            while ((joueurActif == J1 && (caseTape < 1 || caseTape > 6))
+                    || (joueurActif == J2 && (caseTape < 7 || caseTape > 12))
+                    || (isTrouVide(joueurActif.getNumero(), convertisseurLigne(caseTape, joueurActif)))) {
+                    System.out.println("J1 joue entre 1 et 6, J2 joue entre 7 et 12");
+                try {
+                    caseTape = choixS.nextInt();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        return convertisseurLigne(caseTape,joueurActif);
+    }
+
+    /* Ancienne version
+    public int choisitUneCase(Joueur joueurActif) {
+        int caseTape = -1;
         try (Scanner choixS = new Scanner(System.in);) {
             System.out.println("Choissiez une case de votre ligne : " + joueurActif.getNom());
-            caseTape = choixS.nextInt();
             while (caseTape < 0 || caseTape >= 13) {
                 System.out.println("Et aussi dans le jeu");
                 caseTape = choixS.nextInt();
@@ -128,6 +154,7 @@ public class Jeu implements Regles {
         }
         return caseTape;
     }
+    */
 
     public int convertisseurLigne (int choixUtilisateur, Joueur joueurActif){
         int caseConvertie = 0;
@@ -182,11 +209,18 @@ public class Jeu implements Regles {
 
     public void ramasserGraine(int numeroJoueur, int numeroTrou, Joueur joueurActif){
         int nbGraineCaseJouee = plateau.getGraineDansTrou(numeroJoueur, numeroTrou);
-        if(nbGraineCaseJouee >= 2 || nbGraineCaseJouee <= 3){
+        while(checkSiCasePrenable(numeroJoueur,numeroTrou,joueurActif)){
             joueurActif.setScore(nbGraineCaseJouee);
             plateau.viderLeTrou(numeroJoueur, numeroTrou);
         }
         this.finDePartieParNBGraines();
+    }
+
+    private boolean checkSiCasePrenable(int numeroJoueur, int numeroTrou, Joueur joueurActif){
+        if((plateau.getGraineDansTrou(numeroJoueur,numeroTrou) >= 2 && plateau.getGraineDansTrou(numeroJoueur,numeroTrou) <=3)
+                &&( joueurActif.getNumero() != numeroJoueur))
+            return true;
+        else return false;
     }
 
     private void finDePartieParNBGraines(){
@@ -196,6 +230,9 @@ public class Jeu implements Regles {
         }
     }
 
+
+
+    /*
     public void ramasserCaseSuivante(int numeroJoueur, int numeroTrou, Joueur joueurActif){
         int[] caseSuivante = plateau.caseSuivante(numeroJoueur, numeroTrou);
         if(checkCaseSuivantePrenable(numeroJoueur, numeroTrou))
@@ -221,6 +258,8 @@ public class Jeu implements Regles {
             return true;
         else return false;
     }
+
+     */
 
     public boolean isTrouVide(int numeroJoueur, int numeroTrou){
         if(plateau.getGraineDansTrou(numeroJoueur,numeroTrou) == 0)

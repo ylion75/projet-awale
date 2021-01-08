@@ -2,36 +2,7 @@ public class Appli {
 
     public static void main(String[] args) {
         Jeu awale = new Jeu();
-        awale.plateau.afficherPlateau();
-        /*
-        while(!awale.finDePartie()){
-            awale.jouerUnCoup(awale.J1, awale.demanderCase(awale.J1));
-            awale.plateau.afficherPlateau();
-        }
-
-         */
-
-
-        /*
-        if (joueurActif == awale.J1) {
-            int choixJ1 = awale.choisitUneCase(awale.J1);
-            awale.semer(0, choixJ1);
-            awale.jouerUnCoup(awale.J1, choixJ1);
-            awale.joueurSuivant(awale.J1);
-            joueurActif = awale.joueurSuivant(awale.J1);
-        } else if (joueurActif == awale.J2) {
-            int choixJ2 = awale.choisitUneCase(awale.J2);
-            awale.jouerUnCoup(awale.J2, choixJ2);
-            awale.joueurSuivant(awale.J2);
-            joueurActif = awale.joueurSuivant(awale.J2);
-        }
-
-         */
-
-        //
-        //
-        // joueurActif = awale.joueurSuivant(awale.J1);
-
+        awale.run();
 
 
     }

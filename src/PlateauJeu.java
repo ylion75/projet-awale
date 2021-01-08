@@ -82,7 +82,8 @@ public class PlateauJeu {
         }
         System.out.println(); //saut de ligne
         System.out.print("    ");
-            for (int[] ints : plateau) {
+            for(int l = rangee -1; l >= 0; l--){
+                int[] ints = plateau[l];
                 for (int anInt : ints) {
                     System.out.print("[ " + anInt + " ] ");
                     cpt ++;
