@@ -1,23 +1,7 @@
-public class Appli extends Jeu {
-    private static Jeu awale;
-
-    /*
-    public void joue(Joueur joueurActif){
-        if(joueurActif == J1){
-            awale.jouerUnCoup(joueurActif,;
-
-        }
-        else if(joueurActif == J2){
-
-        }
-    }
-
-     */
-
+public class Appli {
 
     public static void main(String[] args) {
-        awale = new Jeu();
-        //joueurActif = new Joueur();
+        Jeu awale = new Jeu();
         awale.plateau.afficherPlateau();
         /*
         while(!awale.finDePartie()){
@@ -26,6 +10,8 @@ public class Appli extends Jeu {
         }
 
          */
+
+
         /*
         if (joueurActif == awale.J1) {
             int choixJ1 = awale.choisitUneCase(awale.J1);
@@ -39,7 +25,7 @@ public class Appli extends Jeu {
             awale.joueurSuivant(awale.J2);
             joueurActif = awale.joueurSuivant(awale.J2);
         }
-        
+
          */
 
         //

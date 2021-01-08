@@ -71,6 +71,7 @@ public class PlateauJeu {
 
     public void afficherPlateau() {
         int cpt = 0;
+        clearScreen();
         System.out.print("NORD");
         for (int i = this.rangee * this.trou; i > this.trou; i--) { // NORD
             if (i >= 10) { //Permet d'augmenter l'espace quand un chiffre contient moins de deux nombres
@@ -102,6 +103,13 @@ public class PlateauJeu {
         System.out.println("Nord a " + nbGrainerangee(1) + " graine(s)" ); //reflechir à une var graineLigne
         System.out.println("Sud a " + nbGrainerangee(0) + " graine(s)");
     }
+
+    public static void clearScreen(){
+        System.out.println("\033[H\033[2J");
+        System.out.flush();
+    }
+
+
     
     public int getGraineDansTrou(int numeroJoueur, int numeroTrou){
         return plateau[numeroJoueur][numeroTrou];
@@ -131,6 +139,16 @@ public class PlateauJeu {
         for(int j = 0; j < trou; j++)
             cptGraine += plateau[numeroJoueur][j];
         return cptGraine;
+    }
+
+    public int nbGrainesRestantes(){
+        int nbGrainesTotal = 0;
+        for(int[] ligne : this.plateau){
+            for(int trou : ligne){
+                nbGrainesTotal += trou;
+            }
+        }
+        return nbGrainesTotal;
     }
 
     public int getTrou() {

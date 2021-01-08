@@ -16,6 +16,19 @@ public class Jeu implements Regles {
         boolean finDePartie = false;
     }
 
+    public void run(){
+        while(!this.getFinDePartie()){
+            int choixJ1 = demanderCase(J1);
+            if(choixJ1 > -1){
+                jouerUnCoup(J1,choixJ1));
+                int choixJ2 = demanderCase(J2);
+                if(choixJ2 > -1){
+                    jouerUnCoup(J2,demanderCase(J2));
+                }
+            }
+        }
+    }
+
     /**
      * Par défaut, c'est le Joueur 1 qui commence.
      *
@@ -34,6 +47,7 @@ public class Jeu implements Regles {
         return saisieTraitee;
     }
 
+    /*
     public boolean coupPossible(Joueur joueurActif, int caseSaisie){
     if(caseSaisie < 0 || caseSaisie > 12)
         return false;
@@ -46,6 +60,8 @@ public class Jeu implements Regles {
     else return true;
     }
 
+     */
+
     private boolean checkSiCasePrenable(int numeroJoueur, int numeroTrou){
         if(plateau.getGraineDansTrou(numeroJoueur,numeroTrou) >= 2 && plateau.getGraineDansTrou(numeroJoueur,numeroTrou) <=3)
             return true;
@@ -57,24 +73,11 @@ public class Jeu implements Regles {
         //a vérifier demain
         //int indiceCase = choixCase(choixUtilisateur);
         //rappel : on a déjà l'indice avant
-
-        if(joueurActif == J1){
-            ramasserGraine(J1.getNumero(),choixValide,joueurActif);
-                //check que la rangée adverse n'est pas vide
-                //attention il manque peut être une condition, peut être qu'il va boucler sur tout le plateau même en face
-                while(plateau.nbGrainerangee(J2.getNumero()) > 0 && checkIfCoteAdverse(joueurActif, J1.getNumero())) {
-                    ramasserCasePrecedente(0,choixValide, joueurActif);
-                    ramasserCaseSuivante(0,choixValide, joueurActif);
-                }
+        int[] derniereCase= semer(joueurActif.getNumero(),choixValide);
+        while(plateau.nbGrainerangee(joueurActif.getNumero()) > 0 && checkIfCoteAdverse(joueurActif, J1.getNumero())) {
+            ramasserCasePrecedente(0,choixValide, joueurActif);
+            ramasserCaseSuivante(0,choixValide, joueurActif);
         }
-        else if(joueurActif == J2){
-            ramasserGraine(1,choixValide,joueurActif);
-                //check rangée opposée
-                while(plateau.nbGrainerangee(0)> 0 && checkIfCoteAdverse(joueurActif, J2.getNumero()));
-                ramasserCasePrecedente(0, choixValide, joueurActif);
-                ramasserCaseSuivante(0, choixValide, joueurActif);
-        }
-
     }
 
     /**
@@ -95,11 +98,14 @@ public class Jeu implements Regles {
         try (Scanner choixS = new Scanner(System.in);) {
             System.out.println("Choissiez une case de votre ligne : " + joueurActif.getNom());
             caseTape = choixS.nextInt();
-            while (caseTape < 1 || caseTape >= 13) {
+            while (caseTape < 0 || caseTape >= 13) {
                 System.out.println("Et aussi dans le jeu");
                 caseTape = choixS.nextInt();
             }
-            if (joueurActif == J1) {
+            if(caseTape == 0){
+                this.setFinDepartie();
+            }
+            else if (joueurActif == J1) {
                 while (isTrouVide(J2.getNumero(), convertisseurLigne(caseTape, J1))) {
                     System.out.println("Une case avec des graines  !");
                     caseTape = choixS.nextInt();
@@ -109,7 +115,6 @@ public class Jeu implements Regles {
                     caseTape = choixS.nextInt();
                 }
             }
-
             else if (joueurActif == J2) {
                 while (isTrouVide(J1.getNumero(), convertisseurLigne(caseTape, J2)) == true) {
                     System.out.println("Une case avec des graines !");
@@ -151,29 +156,7 @@ public class Jeu implements Regles {
     }
     //ancienne version
 
-     /*
-     * @param choixUtilisateur
-     * @return prend le choix de l'utilisateur et renvoie en indice du tableau
-      */
 
-    /*
-    public int choixCase(int choixUtilisateur){
-        int caseChoisie = 0;
-        assert(choixUtilisateur >= 0 && choixUtilisateur <= 12);
-        if(choixUtilisateur > 0 && choixUtilisateur < 7){
-            caseChoisie = choixUtilisateur - 1;
-        }
-        else if(choixUtilisateur > 6) {
-            caseChoisie = (choixUtilisateur - 12) * (-1);
-        }
-        else if(choixUtilisateur == 0){
-            finDepartie = true;
-            return -1;
-        }
-        return caseChoisie;
-    }
-
-     */
 
 
     /**
@@ -202,6 +185,14 @@ public class Jeu implements Regles {
         if(nbGraineCaseJouee >= 2 || nbGraineCaseJouee <= 3){
             joueurActif.setScore(nbGraineCaseJouee);
             plateau.viderLeTrou(numeroJoueur, numeroTrou);
+        }
+        this.finDePartieParNBGraines();
+    }
+
+    private void finDePartieParNBGraines(){
+        if(plateau.nbGrainesRestantes() < 3){
+            this.setFinDepartie();
+            System.out.println("Plus assez de graines !");
         }
     }
 
@@ -237,9 +228,9 @@ public class Jeu implements Regles {
         else return false;
     }
 
-    @Override
-    public boolean finDePartie() {
-        return false;
+
+    public void setFinDepartie() {
+        this.finDepartie = true;
     }
 
     public boolean getFinDePartie() {
@@ -255,5 +246,29 @@ public class Jeu implements Regles {
             return J1;
         } else return J2;
     }
+
+    /*
+     * @param choixUtilisateur
+     * @return prend le choix de l'utilisateur et renvoie en indice du tableau
+     */
+
+    /*
+    public int choixCase(int choixUtilisateur){
+        int caseChoisie = 0;
+        assert(choixUtilisateur >= 0 && choixUtilisateur <= 12);
+        if(choixUtilisateur > 0 && choixUtilisateur < 7){
+            caseChoisie = choixUtilisateur - 1;
+        }
+        else if(choixUtilisateur > 6) {
+            caseChoisie = (choixUtilisateur - 12) * (-1);
+        }
+        else if(choixUtilisateur == 0){
+            finDepartie = true;
+            return -1;
+        }
+        return caseChoisie;
+    }
+
+     */
 
 }
