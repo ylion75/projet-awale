@@ -39,10 +39,10 @@ public class Jeu implements Regles {
     }
 
     /**
-     *
+     * Permet de convertir la saisie de l'utilisateur
      * @param choixUtilisateur
      * @param joueurActif
-     * @return le choix de l'utilisateur convertit en indice du tableau
+     * @return l'indice du tableau correspondant
      */
     public int convertisseurLigne (int choixUtilisateur, Joueur joueurActif){
         int caseConvertie = 0;
@@ -205,7 +205,7 @@ public class Jeu implements Regles {
         plateau.afficherPlateau();
     }
 
-    public void run(){
+    public void deroulePartie(){
         while(!this.getFinDePartie()){
             int choixJ1 = demandeCase(J1);
             if(choixJ1 > -1){

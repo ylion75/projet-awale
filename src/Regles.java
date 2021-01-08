@@ -4,5 +4,4 @@ public interface Regles {
 
     public Joueur premierJoueur();
     public void jouerUnCoup(Joueur joueurActif, int choixUtilisateur);
-
 }
