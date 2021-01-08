@@ -15,6 +15,5 @@ public class JoueurTest {
         Assert.assertEquals(J1.getNumero(),0);
         Assert.assertEquals(J2.getNumero(),1);
     }
-
 }
 

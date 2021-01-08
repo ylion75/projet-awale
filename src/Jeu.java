@@ -217,5 +217,4 @@ public class Jeu implements Regles {
             }
         }
     }
-
 }

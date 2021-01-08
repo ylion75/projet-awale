@@ -22,6 +22,4 @@ public class PlateauJeuTest {
         p.ajouteUneGraine(1,1);
         assertEquals(p.getGraineDansTrou(1,1),5);
     }
-
-
 }
