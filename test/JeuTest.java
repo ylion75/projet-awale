@@ -32,6 +32,13 @@ public class JeuTest {
 
     }
 
+
+
+
+
+
+
+    /*
     @Test
     public void convertisseurLigneTest(){
         Jeu awale = new Jeu();
@@ -62,11 +69,7 @@ public class JeuTest {
         assertEquals(convertisseurLignetest6, 5);
     }
 
-    @Test
-    public void ramasserTest() {
-        Jeu awale = new Jeu();
-        
-    }
+     */
 }
 
 

@@ -44,7 +44,7 @@ public class Jeu implements Regles {
      * @param joueurActif
      * @return l'indice du tableau correspondant
      */
-    public int convertisseurLigne (int choixUtilisateur, Joueur joueurActif){
+    private int convertisseurLigne (int choixUtilisateur, Joueur joueurActif){
         int caseConvertie = 0;
         assert(choixUtilisateur >= 0 && choixUtilisateur <= 12);
         if(joueurActif == J1) {
@@ -67,27 +67,6 @@ public class Jeu implements Regles {
             return -1;
         }
         return caseConvertie;
-    }
-
-    /**
-     * Reinitialise la case choisie à 0 et séme les cases suivantes selon le nombre de graine de la case
-     * @param numeroJoueur
-     * @param numeroTrou
-     * @return les coordonnées de la case sur laquelle on s'arrête de semer
-     *
-     */
-    public int[] semer(int numeroJoueur, int numeroTrou){
-        int nbGraine = plateau.getGraineDansTrou(numeroJoueur, numeroTrou);
-        //vide le trou choisi par l'utilisateur
-        plateau.viderLeTrou(numeroJoueur, numeroTrou);
-        for(int i = nbGraine; i > 0; i--){
-            int[] caseSuivante = plateau.caseSuivante(numeroJoueur, numeroTrou);
-            numeroJoueur = caseSuivante[0];
-            numeroTrou = caseSuivante[1];
-            plateau.ajouteUneGraine(numeroJoueur,numeroTrou);
-        }
-        //coordonnées case sur laquelle on s'arrête de semer
-        return new int[]{numeroJoueur, numeroTrou};
     }
 
     /**
@@ -129,10 +108,30 @@ public class Jeu implements Regles {
         }
     }
 
-    public boolean isTrouVide(int numeroJoueur, int numeroTrou){
+    private boolean isTrouVide(int numeroJoueur, int numeroTrou){
         if(plateau.getGraineDansTrou(numeroJoueur,numeroTrou) == 0)
             return true;
         else return false;
+    }
+
+    /**
+     * Reinitialise la case choisie à 0 et séme les cases suivantes selon le nombre de graine de la case
+     * @param numeroJoueur
+     * @param numeroTrou
+     * @return les coordonnées de la case sur laquelle on s'arrête de semer
+     *
+     */
+    public int[] semer(int numeroJoueur, int numeroTrou){
+        int nbGraine = plateau.getGraineDansTrou(numeroJoueur, numeroTrou);
+        plateau.viderLeTrou(numeroJoueur, numeroTrou);
+        for(int i = nbGraine; i > 0; i--){
+            int[] caseSuivante = plateau.caseSuivante(numeroJoueur, numeroTrou);
+            numeroJoueur = caseSuivante[0];
+            numeroTrou = caseSuivante[1];
+            plateau.ajouteUneGraine(numeroJoueur,numeroTrou);
+        }
+        //coordonnées case sur laquelle on s'arrête de semer
+        return new int[]{numeroJoueur, numeroTrou};
     }
 
     /**
@@ -140,7 +139,7 @@ public class Jeu implements Regles {
      * @param joueurActif
      * @return l'indice du tableau qui correspond
      */
-    public int demandeCase(Joueur joueurActif) {
+    private int demandeCase(Joueur joueurActif) {
         int saisieUtilisateur = -1;
         Scanner sc = new Scanner(System.in);
         System.out.println("Choissiez une case de votre ligne : " + joueurActif.getNom());
@@ -198,6 +197,11 @@ public class Jeu implements Regles {
     }
     */
 
+    /**
+     * 
+     * @param joueurActif
+     * @param choixValide
+     */
     @Override
     public void jouerUnCoup(Joueur joueurActif, int choixValide){
         int[] derniereCase= semer(joueurActif.getNumero(),choixValide);
