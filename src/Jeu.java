@@ -141,7 +141,7 @@ public class Jeu implements Regles {
      * @return l'indice du tableau qui correspond
      */
     private int demandeCase(Joueur joueurActif) {
-        int saisieUtilisateur = -1;
+        int saisieUtilisateur = 0;
         Scanner sc = new Scanner(System.in);
         System.out.println("Choissiez une case de votre ligne : " + joueurActif.getNom());
         if (saisieUtilisateur == 0) {
@@ -150,14 +150,16 @@ public class Jeu implements Regles {
         while ((joueurActif == J1 && (saisieUtilisateur < 1 || saisieUtilisateur > 6))
                 || (joueurActif == J2 && (saisieUtilisateur < 7 || saisieUtilisateur > 12))
                 || (isTrouVide(joueurActif.getNumero(), convertisseurLigne(saisieUtilisateur, joueurActif)))) {
-            System.out.println("J1 joue entre 1 et 6, J2 joue entre 7 et 12");
+            if(joueurActif == J1)
+                System.out.println("Jouez entre 1 et 6");
+            else if (joueurActif == J2)
+                System.out.println("Jouez entre 7 et 12");
             try {
                 saisieUtilisateur = sc.nextInt();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
         return convertisseurLigne(saisieUtilisateur,joueurActif);
     }
 
