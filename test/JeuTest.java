@@ -5,13 +5,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class JeuTest {
+    Jeu awale = new Jeu();
 
     @Test
     public void initialisationJeu() {
-        Jeu awale = new Jeu();
         Joueur[] tabjoueur = awale.getJoueurs();
         assertEquals(tabjoueur[0].getNumero(), 0);
-        assertEquals(tabjoueur[1].getNumero(), 1);
+        assertEquals(tabjoueur[1].getNumero(), 0);
+        System.out.println(awale.J1.getNumero());
+        System.out.println(awale.J2.getNumero());
         assertEquals(tabjoueur[0].getNom(), "SUD");
         assertEquals(tabjoueur[1].getNom(), "NORD");
         assertEquals(awale.premierJoueur().getNumero(), 0);
@@ -19,7 +21,6 @@ public class JeuTest {
 
     @Test
     public void semerTest() {
-        Jeu awale = new Jeu();
         int[] semerTest = awale.semer(0, 3);
         //a changé de camp donc normalement camp d'en face
         assertEquals(semerTest[0], 1);
@@ -40,18 +41,22 @@ public class JeuTest {
         //ramasserGraine(0,2, )
     }
 
-    /*
+
     @Test
     public void jouerUnCoupTest(){
-        Jeu awale = new Jeu();
-        awale.jouerUnCoup(awale.J1,5);
+        //J1 joue en 6, on doit donc avoir semer jusqu'à la case 10 (indice 3)
+        awale.jouerUnCoup(awale.J1, awale.convertisseurLigne(6, awale.J1));
+        assertEquals(awale.plateau.getGraineDansTrou(1,3),5);
+
+        //J2 joue en
+
         //vérifie qu'il joue dans la bonne case et qu'il sème bien dans la suivante
         //assertEquals(awale.plateau.getGraineDansTrou(0,4), 0);
 
 
     }
 
-     */
+
 
 
 
