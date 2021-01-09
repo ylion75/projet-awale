@@ -137,12 +137,15 @@ public class Jeu implements Regles {
 
     /**
      * Demande la case à l'utilisateur et vérifie que la case appartient à sa partie du tableau
+     * saisieUtilisateur initialisée à -1 car si 0 le boolean finDePartie passe a true
      * @param joueurActif
      * @return l'indice du tableau qui correspond
      */
     private int demandeCase(Joueur joueurActif) {
-        int saisieUtilisateur = 0;
+        int saisieUtilisateur = -1;
         Scanner sc = new Scanner(System.in);
+        System.out.println("Nord a " + J1.getScore() + " graine(s)" );
+        System.out.println("Sud a " + J2.getScore() + " graine(s)");
         System.out.println("Choissiez une case de votre ligne : " + joueurActif.getNom());
         if (saisieUtilisateur == 0) {
             this.setFinDepartie();

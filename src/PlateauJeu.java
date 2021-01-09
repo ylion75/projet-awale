@@ -104,8 +104,6 @@ public class PlateauJeu {
                 System.out.print("  " + j + "   ");
             }
         System.out.println(); //saut de ligne
-        System.out.println("Nord a " + getNBGrainerangee(1) + " graine(s)" ); //reflechir à une var graineLigne
-        System.out.println("Sud a " + getNBGrainerangee(0) + " graine(s)");
     }
 
     public static void clearScreen(){

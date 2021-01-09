@@ -1,7 +1,7 @@
     public class Joueur {
     private String nom;
-    private int numero;
-    private static int cpt = 0; //compteur static pour attribuer un numéro au joueur
+    private static int numero = 0;
+    private  int cpt = 0; //compteur static pour attribuer un numéro au joueur
     private int score;
 
     public Joueur(String nom){
