@@ -39,12 +39,28 @@ public class Jeu implements Regles {
     }
 
     /**
+     * Mets fin à la partie lorsqu'il y a moins de 3 graines sur le plateau
+     */
+    private void finDePartieParNBGraines(){
+        if(plateau.nbGrainesRestantes() < 3){
+            this.setFinDepartie();
+            System.out.println("Plus assez de graines !");
+        }
+    }
+
+    private boolean isTrouVide(int numeroJoueur, int numeroTrou){
+        if(plateau.getGraineDansTrou(numeroJoueur,numeroTrou) == 0)
+            return true;
+        else return false;
+    }
+
+    /**
      * Permet de convertir la saisie de l'utilisateur
      * @param choixUtilisateur
      * @param joueurActif
-     * @return l'indice du tableau correspondant
+     * @return l'indice de la case correspondant au choix de l'utilisateur. Le 0 renvoie 0 et mets fin à la partie.
      */
-    private int convertisseurLigne (int choixUtilisateur, Joueur joueurActif){
+    protected int convertisseurLigne(int choixUtilisateur, Joueur joueurActif){
         int caseConvertie = 0;
         assert(choixUtilisateur >= 0 && choixUtilisateur <= 12);
         if(joueurActif == J1) {
@@ -63,25 +79,10 @@ public class Jeu implements Regles {
             }
         }
         else if(choixUtilisateur == 0){
-            finDepartie = true;
+            this.finDepartie = true;
             return -1;
         }
         return caseConvertie;
-    }
-
-    /**
-     * Tant que le Trou est prenable, vide le Trou et incrémente le score du joueur puis vérifie le trou d'à côté
-     * @param numeroJoueur
-     * @param numeroTrou
-     * @param joueurActif
-     */
-    public void ramasserGraine(int numeroJoueur, int numeroTrou, Joueur joueurActif){
-        int nbGraineCaseJouee = plateau.getGraineDansTrou(numeroJoueur, numeroTrou);
-        while(checkSiCasePrenable(numeroJoueur,numeroTrou,joueurActif)){
-            joueurActif.setScore(nbGraineCaseJouee);
-            plateau.viderLeTrou(numeroJoueur, numeroTrou);
-        }
-        this.finDePartieParNBGraines();
     }
 
     /**
@@ -99,19 +100,19 @@ public class Jeu implements Regles {
     }
 
     /**
-     * Mets fin à la partie lorsqu'il y a moins de 3 graines sur le plateau
+     * Tant que le Trou est prenable, vide le Trou et i
+     * Incrémente le score du joueur puis vérifie le trou d'à côté
+     * @param numeroJoueur
+     * @param numeroTrou
+     * @param joueurActif
      */
-    private void finDePartieParNBGraines(){
-        if(plateau.nbGrainesRestantes() < 3){
-            this.setFinDepartie();
-            System.out.println("Plus assez de graines !");
+    public void ramasserGraine(int numeroJoueur, int numeroTrou, Joueur joueurActif){
+        int nbGraineCaseJouee = plateau.getGraineDansTrou(numeroJoueur, numeroTrou);
+        while(checkSiCasePrenable(numeroJoueur,numeroTrou,joueurActif)){
+            joueurActif.setScore(nbGraineCaseJouee);
+            plateau.viderLeTrou(numeroJoueur, numeroTrou);
         }
-    }
-
-    private boolean isTrouVide(int numeroJoueur, int numeroTrou){
-        if(plateau.getGraineDansTrou(numeroJoueur,numeroTrou) == 0)
-            return true;
-        else return false;
+        this.finDePartieParNBGraines();
     }
 
     /**
@@ -160,51 +161,16 @@ public class Jeu implements Regles {
         return convertisseurLigne(saisieUtilisateur,joueurActif);
     }
 
-    /* TODO: Ancienne version, a supprimer une fois que l'affichage sera remis
-    public int choisitUneCase(Joueur joueurActif) {
-        int caseTape = -1;
-        try (Scanner choixS = new Scanner(System.in);) {
-            System.out.println("Choissiez une case de votre ligne : " + joueurActif.getNom());
-            while (caseTape < 0 || caseTape >= 13) {
-                System.out.println("Et aussi dans le jeu");
-                caseTape = choixS.nextInt();
-            }
-            if(caseTape == 0){
-                this.setFinDepartie();
-            }
-            else if (joueurActif == J1) {
-                while (isTrouVide(J2.getNumero(), convertisseurLigne(caseTape, J1))) {
-                    System.out.println("Une case avec des graines  !");
-                    caseTape = choixS.nextInt();
-                }
-                while (caseTape > 6 || caseTape < 0) {
-                    System.out.println("on a dit dans ta ligne ! (ligne " + joueurActif.getNom() + ")");
-                    caseTape = choixS.nextInt();
-                }
-            }
-            else if (joueurActif == J2) {
-                while (isTrouVide(J1.getNumero(), convertisseurLigne(caseTape, J2)) == true) {
-                    System.out.println("Une case avec des graines !");
-                    caseTape = choixS.nextInt();
-                }
-                while (caseTape < 7 || caseTape > 13) {
-                    System.out.println("on a dit dans ta ligne !(ligne " + joueurActif.getNom() + ")");
-                    caseTape = choixS.nextInt();
-                }
-            }
-        }
-        return caseTape;
-    }
-    */
-
     /**
-     * 
+     * Récupère la dernière case sur laquelle on a semé
+     * Invoque ramasserGraine qui ramasse la case et celles concomittantes si c'est possible
      * @param joueurActif
      * @param choixValide
      */
     @Override
     public void jouerUnCoup(Joueur joueurActif, int choixValide){
         int[] derniereCase= semer(joueurActif.getNumero(),choixValide);
+        semer(joueurActif.getNumero(),choixValide);
         ramasserGraine(derniereCase[0], derniereCase[1], joueurActif);
         plateau.afficherPlateau();
     }

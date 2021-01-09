@@ -24,11 +24,29 @@ public class JeuTest {
         //a changé de camp donc normalement camp d'en face
         assertEquals(semerTest[0], 1);
         assertEquals(semerTest[1], 4);
+        assertEquals(awale.plateau.getGraineDansTrou(0,3), 0);
 
         int[] semerTest2 = awale.semer(1, 2);
         //a changé de camp donc normalement camp d'en face
         assertEquals(semerTest2[0], 0);
         assertEquals(semerTest2[1], 1);
+        assertEquals(awale.plateau.getGraineDansTrou(1,2),0);
+    }
+
+
+    @Test
+    public void ramasserGraineTest(){
+        Jeu awale = new Jeu();
+        //ramasserGraine(0,2, )
+    }
+
+    @Test
+    public void jouerUnCoupTest(){
+        Jeu awale = new Jeu();
+        awale.jouerUnCoup(awale.J1,5);
+        //vérifie qu'il joue dans la bonne case et qu'il sème bien dans la suivante
+        //assertEquals(awale.plateau.getGraineDansTrou(0,4), 0);
+
 
     }
 
