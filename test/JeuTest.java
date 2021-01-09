@@ -40,6 +40,7 @@ public class JeuTest {
         //ramasserGraine(0,2, )
     }
 
+    /*
     @Test
     public void jouerUnCoupTest(){
         Jeu awale = new Jeu();
@@ -49,6 +50,8 @@ public class JeuTest {
 
 
     }
+
+     */
 
 
 
