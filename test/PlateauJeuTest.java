@@ -31,6 +31,7 @@ public class PlateauJeuTest {
         assertEquals(caseSuivanteBoutDeLigneBas[0],1);
         assertEquals(caseSuivanteBoutDeLigneBas[1], 5);
 
+        //test en bout de ligne du haut
         int[] caseSuivanteBoutDeLigneHaut = plateau.caseSuivante(1,0);
         assertEquals(caseSuivanteBoutDeLigneHaut[0],0);
         assertEquals(caseSuivanteBoutDeLigneHaut[1],0);

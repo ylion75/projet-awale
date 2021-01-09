@@ -42,7 +42,7 @@ public class Jeu implements Regles {
      * Mets fin à la partie lorsqu'il y a moins de 3 graines sur le plateau
      */
     private void finDePartieParNBGraines(){
-        if(plateau.nbGrainesRestantes() < 3){
+        if(plateau.getNBGrainesRestantes() < 3){
             this.setFinDepartie();
             System.out.println("Plus assez de graines !");
         }
