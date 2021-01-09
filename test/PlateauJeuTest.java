@@ -23,5 +23,16 @@ public class PlateauJeuTest {
         assertEquals(p.getGraineDansTrou(1,1),5);
     }
 
-    //TODO : a faire : tester caseSuivante
+    @Test
+    public void caseSuivanteTest(){
+        PlateauJeu plateau = new PlateauJeu();
+        //test du passage du changement en bout de ligne en bas
+        int[] caseSuivanteBoutDeLigneBas = plateau.caseSuivante(0,5);
+        assertEquals(caseSuivanteBoutDeLigneBas[0],1);
+        assertEquals(caseSuivanteBoutDeLigneBas[1], 5);
+
+        int[] caseSuivanteBoutDeLigneHaut = plateau.caseSuivante(1,0);
+        assertEquals(caseSuivanteBoutDeLigneHaut[0],0);
+        assertEquals(caseSuivanteBoutDeLigneHaut[1],0);
+    }
 }
