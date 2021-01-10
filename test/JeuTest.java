@@ -11,7 +11,7 @@ public class JeuTest {
     public void initialisationJeu() {
         Joueur[] tabjoueur = awale.getJoueurs();
         assertEquals(tabjoueur[0].getNumero(), 0);
-        assertEquals(tabjoueur[1].getNumero(), 0);
+        assertEquals(tabjoueur[1].getNumero(), 1);
         System.out.println(awale.J1.getNumero());
         System.out.println(awale.J2.getNumero());
         assertEquals(tabjoueur[0].getNom(), "SUD");
@@ -37,16 +37,26 @@ public class JeuTest {
 
     @Test
     public void ramasserGraineTest(){
-        Jeu awale = new Jeu();
+        //Jeu awale = new Jeu();
         //ramasserGraine(0,2, )
     }
 
 
     @Test
     public void jouerUnCoupTest(){
-        //J1 joue en 6, on doit donc avoir semer jusqu'à la case 10 (indice 3)
-        awale.jouerUnCoup(awale.J1, awale.convertisseurLigne(6, awale.J1));
-        assertEquals(awale.plateau.getGraineDansTrou(1,3),5);
+        System.out.println(awale.J1.getNumero());
+        System.out.println(awale.J2.getNumero());
+        awale.jouerUnCoup(awale.J1, awale.convertisseurLigne(4, awale.J1));
+        assertEquals(awale.plateau.getGraineDansTrou(1,3),4);
+        awale.jouerUnCoup(awale.J2, awale.convertisseurLigne(9, awale.J2));
+        awale.jouerUnCoup(awale.J1, awale.convertisseurLigne(1, awale.J1));
+
+        awale.jouerUnCoup(awale.J2, awale.convertisseurLigne(7, awale.J2));
+        awale.jouerUnCoup(awale.J1, awale.convertisseurLigne(5, awale.J1));
+
+        awale.jouerUnCoup(awale.J2, awale.convertisseurLigne(7, awale.J2));
+        awale.jouerUnCoup(awale.J1, awale.convertisseurLigne(3, awale.J1));
+        awale.jouerUnCoup(awale.J2, awale.convertisseurLigne(8, awale.J2));
 
         //J2 joue en
 
