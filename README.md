@@ -6,5 +6,5 @@ Dans le cadre de notre DUT Informatique et de notre cours de Programmation à ob
 L’ensemble des règles relatives au jeu sont disponibles ici : https://fr.wikipedia.org/wiki/Awal%C3%A9.
 
 L’objectif de ce projet était double :
-  Sur la partie algorithmique à développer un projet qui fonctionnel,
-  Sur la partie conception : structurer notre programme selon les grands principes de la Programmation orientée objet.  
+  - Sur la partie algorithmique à développer un projet qui fonctionne,
+  - Sur la partie conception : structurer notre programme selon les grands principes de la Programmation orientée objet.  
