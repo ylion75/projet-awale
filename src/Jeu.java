@@ -115,6 +115,7 @@ public class Jeu implements Regles {
         this.finDePartieParNBGraines();
     }
 
+
     /**
      * Reinitialise la case choisie à 0 et séme les cases suivantes selon le nombre de graine de la case
      * @param numeroJoueur
@@ -133,6 +134,19 @@ public class Jeu implements Regles {
         }
         //coordonnées case sur laquelle on s'arrête de semer
         return new int[]{numeroJoueur, numeroTrou};
+=======
+    private void ramasser(int numeroJoueur, int numeroTrou){
+        int joueurAdverse;
+        if(numeroJoueur == 0)
+            joueurAdverse = 1;
+        else joueurAdverse = 0;
+        while(plateau.nbGrainerangee(joueurAdverse) > 0)
+            semer(numeroJoueur, numeroTrou);
+        // while pour vérifier que la ligne n'est pas vide
+        while()
+        // while: vérifier si la case finale contient 2 ou 3 graines + vérifier qu'elle appartient au joueur adverse
+        // la case passe à 0, le nombre de graine passe au score du joueur
+
     }
 
     /**

@@ -3,6 +3,8 @@ public class PlateauJeu {
     private int trou; //correspond à une case (ligne)
     private int graineParTrou;
     private int[][] plateau;
+    private int ligneN;
+    private int ligneS;
 
 
     public PlateauJeu(int rangee, int trou, int graineParTrou) {
@@ -12,7 +14,7 @@ public class PlateauJeu {
 
         this.plateau = new int[rangee][trou];
         for (int row = 0; row < this.plateau.length; row++) {
-            for (int col = 0; col < this.plateau[row].length; col++) {  //Intellij sugere Arrays.fill(this.plateau[i], this.graineParTrou);
+            for (int col = 0; col < this.plateau[row].length; col++) {
                 this.plateau[row][col] = this.graineParTrou;
             }
         }
@@ -72,6 +74,17 @@ public class PlateauJeu {
         return nbGrainesTotal;
     }
 
+    public int graineParLigne(){ //A finir
+        for (int i=0,somLigne=0;i<5;i++)
+        {
+            for(int j=0;j<5;j++)
+            {
+                somLigne=somLigne+plateau[rangee][trou];
+            }
+            System.out.println("la somme de la ligne"+i+"est égale à "+somLigne);
+        }
+    }
+
     public void afficherPlateau() {
         int cpt = 0;
         clearScreen();
@@ -104,7 +117,13 @@ public class PlateauJeu {
                 System.out.print("  " + j + "   ");
             }
         System.out.println(); //saut de ligne
+        System.out.println("Nord a " );
+        System.out.println("Sud a " );
     }
+
+
+
+
 
     public static void clearScreen(){
         System.out.println("\033[H\033[2J");
@@ -131,6 +150,7 @@ public class PlateauJeu {
      * @param numeroTrou
      * @return les coordonnées correspondant à la case suivante
      */
+
     public int[] caseSuivante(int numeroJoueur, int numeroTrou){
         //on change de joueur en arrivant au bout de plateau
         if((numeroTrou == getPlateau()[numeroJoueur].length - 1 && numeroJoueur == 0)
@@ -142,6 +162,28 @@ public class PlateauJeu {
         else if(numeroJoueur == 1)
             numeroTrou --;
         return new int[]{numeroJoueur, numeroTrou};
+
+    public int nbGrainerangee(int numeroJoueur){
+        int cptGraine = 0;
+        for(int j = 0; j < trou; j++)
+            cptGraine += plateau[numeroJoueur][j];
+        return cptGraine;
+    }
+
+    //public int jouer
+
+    //getter pour les tests
+    public int getRangee() {
+        return rangee;
+    }
+
+    public int getTrou() {
+        return trou;
+    }
+
+    public int[][] getPlateau() {
+        return plateau;
+
     }
 }
 
