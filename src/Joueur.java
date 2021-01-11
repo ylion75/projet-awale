@@ -6,7 +6,7 @@
 
     public Joueur(String nom){
         this.nom = nom;
-        this.numero = cpt++;
+        this.numero = cpt ++;
         this.score = 0;
     }
 
@@ -22,7 +22,7 @@
         this.score = score;
     }
 
-    public void ajouterScore(int score){
-        setScore(this.score + score);
-    }
+    public int getScore(){
+        return score;
+        }
 }

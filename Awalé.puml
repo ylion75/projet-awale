@@ -1,0 +1,68 @@
+@startuml
+!define DARKRED
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+class Appli {
++main(String[] args)
+
+}
+
+class Jeu {
+#plateau : PlateauJeu
+#J1 : Joueur
+#J2 : Joueur
+-finDepartie : boolean
+
+-finDePartieParNBGraines()
+-isTrouVide(int numeroJoueur, int numeroTrou)
+#convertisseurLigne(int choixUtilisateur, Joueur joueurActif)
+-checkSiCasePrenable(int numeroJoueur, int numeroTrou, Joueur joueurActif)
++ramasserGraine(int numeroJoueur, int numeroTrou, Joueur joueurActif)
++semer(int numeroJoueur, int numeroTrou)
+-demandeCase(Joueur joueurActif)
++jouerUnCoup(Joueur joueurActif, int choixValide)
++deroulePartie()
+}
+
+class Joueur {
+-nom : String
+-numero : int
+-cpt : int
+-score : int
+
++getNom()
++getNumero()
++setScore(int score)
++getScore()
++ajouterScore(int score)
+}
+
+class PlateauJeu{
+-rangee : int
+-trou : int
+-graineParTrou : int
+-plateau : int[][]
+
++getNBGrainerangee(int numeroJoueur)
++getNBGrainesRestantes()
++afficherPlateau()
++clearScreen()
++viderLeTrou(int numeroJoueur, int numeroTrou)
++ajouteUneGraine(int numeroJoueur, int numeroTrou)
++caseSuivante(int numeroJoueur, int numeroTrou)
+}
+
+interface Regle <interface> {
+Joueur premierJoueur();
+jouerUnCoup(Joueur joueurActif, int choixUtilisateur);
+
+}
+
+
+Appli ..|> Jeu
+Joueur ..> PlateauJeu
+Jeu <|..* PlateauJeu
+Regle *..>Jeu
+Jeu <|..* Joueur
+
+@enduml
